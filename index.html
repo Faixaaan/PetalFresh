@@ -23,401 +23,7 @@
       rel="stylesheet"
     />
 
-    <style>
-      * {
-        font-family: "Montserrat", sans-serif;
-      }
-
-      .top-bar {
-        background: #f8f9fa;
-        font-size: 14px;
-        padding: 15px 0;
-        border-bottom: 1px solid #eaeaea;
-      }
-      .top-items {
-        font-weight: 500;
-      }
-
-      .main-navbar {
-        background: #0b8bcb;
-        padding: 5px 0;
-      }
-
-      .nav-link {
-        color: white !important;
-        font-weight: 500;
-        padding: 10px 25px !important;
-      }
-
-      .nav-link:hover,
-      .nav-link.active {
-        background: rgba(255, 255, 255, 0.1);
-      }
-
-      .container {
-        max-width: 1400px !important;
-      }
-
-      .cart-btn {
-        color: white;
-        font-size: 20px;
-        padding: 10px;
-      }
-
-      .schedule-btn {
-        background: white;
-        color: #0b8bcb;
-        font-weight: 600;
-        padding: 10px 20px;
-        border-radius: 4px;
-      }
-
-      .schedule-btn:hover {
-        background: #f8f9fa;
-      }
-
-      .hero-slide {
-        min-height: 90vh;
-        background-size: cover;
-        background-position: center;
-        position: relative;
-      }
-
-      .hero-slide::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.5);
-      }
-
-      .hero-content {
-        position: relative;
-        z-index: 2;
-        color: white;
-        text-align: center;
-      }
-
-      .hero-content h1 {
-        font-size: 42px;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-      }
-
-      .hero-content p {
-        font-size: 20px;
-        font-weight: 300;
-      }
-
-      .order-btn {
-        background: #0b8bcb;
-        color: white;
-        padding: 12px 40px;
-        font-weight: 600;
-        border-radius: 4px;
-      }
-
-      .logo-img {
-        height: 70px;
-        width: auto;
-      }
-
-      /* FOOTER STYLES */
-      .footer {
-        background: #0b8bcb;
-        color: white;
-        padding: 60px 0 30px;
-      }
-
-      .footer h4 {
-        color: #fff;
-        font-weight: 700;
-        margin-bottom: 20px;
-        font-size: 20px;
-      }
-
-      .footer-contact {
-        list-style: none;
-        padding-left: 0;
-      }
-
-      .footer-contact li {
-        margin-bottom: 15px;
-      }
-
-      .footer-contact i {
-        color: #fff;
-        margin-right: 10px;
-        width: 20px;
-      }
-
-      .footer-newsletter p {
-        margin-bottom: 20px;
-        color: #fff;
-      }
-
-      .newsletter-form {
-        display: flex;
-        gap: 10px;
-        margin-bottom: 30px;
-      }
-
-      .newsletter-form input {
-        flex: 1;
-        padding: 12px 15px;
-        border: none;
-        border-radius: 4px;
-        font-size: 14px;
-      }
-
-      .newsletter-form button:hover {
-        background: #0a6fa8;
-      }
-
-      .footer-about p {
-        color: #fff;
-        line-height: 1.6;
-        margin-top: 20px;
-      }
-
-      /* Footer Bottom Styles */
-      .footer-bottom-wrapper {
-        background-color: #fff;
-        color: #000;
-      }
-
-      .footer-bottom {
-        min-height: 60px;
-      }
-
-      .footer-links a {
-        color: #000;
-        text-decoration: none;
-        font-weight: 500;
-      }
-
-      .footer-links a:hover {
-        color: #0b8bcb;
-      }
-
-      /* Mobile */
-      @media (max-width: 768px) {
-        .hero-slide {
-          min-height: 60vh;
-        }
-
-        .hero-content h1 {
-          font-size: 28px;
-        }
-
-        .hero-content p {
-          font-size: 16px;
-        }
-        .logo-img {
-          height: 50px;
-          width: auto;
-        }
-
-        /* Footer Responsive */
-        .footer {
-          padding: 40px 0 20px;
-        }
-
-        .footer-section {
-          margin-bottom: 30px;
-        }
-
-        .newsletter-form {
-          flex-direction: column;
-        }
-
-        /* Footer Bottom Responsive */
-        .footer-bottom {
-          flex-direction: column;
-          text-align: center;
-          gap: 15px;
-          padding: 20px 0 !important;
-        }
-        
-        .footer-links a {
-          margin: 0 10px !important;
-        }
-      }
-
-      @media (max-width: 576px) {
-        .footer-links {
-          display: flex;
-          flex-direction: column;
-          gap: 10px;
-        }
-        
-        .footer-links a {
-          margin: 0 !important;
-        }
-      }
-      /* Quality Service Section */
-.quality-service {
-    background: #f8f9fa;
-    border-top: 1px solid #eaeaea;
-    border-bottom: 1px solid #eaeaea;
-    padding: 80px 0;
-}
-
-.quality-service h2 {
-    color: #0B8BCB;
-    font-weight: 700;
-    margin-bottom: 20px;
-}
-
-.quality-service h2 span {
-    font-size: 36px;
-    display: block;
-    margin-top: 10px;
-}
-
-.quality-service .lead {
-    color: #333;
-    font-size: 18px;
-    line-height: 1.6;
-    max-width: 500px;
-}
-
-.quality-service img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 10px;
-  
-}
-
-/* Responsive Design */
-
-/* Large Desktops (1200px and up) */
-@media (min-width: 1200px) {
-    .quality-service {
-        padding: 100px 0;
-    }
-    
-    .quality-service h2 {
-        font-size: 40px;
-    }
-    
-    .quality-service h2 span {
-        font-size: 42px;
-    }
-    
-    .quality-service .lead {
-        font-size: 20px;
-    }
-}
-
-/* Tablets and Small Desktops (992px to 1199px) */
-@media (max-width: 1199px) and (min-width: 992px) {
-    .quality-service {
-        padding: 70px 0;
-    }
-    
-    .quality-service h2 {
-        font-size: 34px;
-    }
-    
-    .quality-service h2 span {
-        font-size: 36px;
-    }
-    
-    .quality-service .lead {
-        font-size: 18px;
-    }
-}
-
-/* Tablets (768px to 991px) */
-@media (max-width: 991px) {
-    .quality-service {
-        padding: 60px 0;
-        text-align: center;
-    }
-    
-    .quality-service h2 {
-        font-size: 32px;
-    }
-    
-    .quality-service h2 span {
-        font-size: 34px;
-    }
-    
-    .quality-service .lead {
-        font-size: 18px;
-        margin: 0 auto;
-    }
-    
-    .quality-service .mb-4 {
-        margin-bottom: 40px !important;
-    }
-}
-
-/* Mobile (576px to 767px) */
-@media (max-width: 767px) {
-    .quality-service {
-        padding: 50px 0;
-    }
-    
-    .quality-service h2 {
-        font-size: 28px;
-    }
-    
-    .quality-service h2 span {
-        font-size: 30px;
-    }
-    
-    .quality-service .lead {
-        font-size: 16px;
-        padding: 0 15px;
-    }
-    
-    .quality-service img {
-        max-width: 80%;
-    }
-}
-
-/* Small Mobile (Up to 575px) */
-@media (max-width: 575px) {
-    .quality-service {
-        padding: 40px 0;
-    }
-    
-    .quality-service h2 {
-        font-size: 24px;
-    }
-    
-    .quality-service h2 span {
-        font-size: 26px;
-    }
-    
-    .quality-service .lead {
-        font-size: 15px;
-        padding: 0 10px;
-    }
-    
-    .quality-service img {
-        max-width: 90%;
-        margin-top: 20px;
-    }
-}
-
-/* Extra small devices (portrait phones, less than 400px) */
-@media (max-width: 400px) {
-    .quality-service h2 {
-        font-size: 22px;
-    }
-    
-    .quality-service h2 span {
-        font-size: 24px;
-    }
-    
-    .quality-service .lead {
-        font-size: 14px;
-    }
-}
-    </style>
+    <link rel="stylesheet" href="./Assets/css/style.css" />
   </head>
   <body>
     <!-- TOP BAR -->
@@ -533,37 +139,748 @@
         </div>
       </div>
     </section>
-    <!-- quality service -->
-     <!-- Quality Service Section -->
-<section class="quality-service py-5">
-    <div class="container">
-        <div class="row align-items-center">
-            <!-- Left side - Text content -->
-            <div class="col-lg-6 mb-4 mb-lg-0">
-                <h2 class="mb-3" style="color: #0B8BCB; font-weight: 700;">
-                    Quality Service with <br>
-                    <span style="font-size: 36px;">Free Collection & Delivery</span>
-                </h2>
-                <p class="lead" style="color: #333; font-size: 18px; line-height: 1.6;">
-                    It is our goal to offer you the best possible laundry 
-                    and dry cleaning service available.
-                </p>
-            </div>
-            
-            <!-- Right side - Image or icon -->
-            <div class="col-lg-6 text-center">
-                <div style="max-width: 400px; margin: 0 auto;">
-                    <!-- You can add an image or icon here -->
-                    <img src="./Assets/Images/car.png" alt="">
+    <!-- Passonite Laundary -->
+    <section class="py-5 laundry-about">
+      <div class="container">
+        <div class="row align-items-flex-start">
+          <div class="col-lg-6 col-md-12 mb-4 mb-lg-0 text-center">
+            <img
+              src="./Assets/Images/Passonite-laundary.png"
+              alt="Laundry"
+              class="img-fluid"
+            />
+          </div>
+
+          <div class="col-lg-6 col-md-12">
+            <span class="text-primary fw-semibold d-block mb-2">
+              [More than 25 Years of Experience]
+            </span>
+
+            <h2 class="fw-bold mb-3 Passionate-heading">
+              We are Passionate About <br />
+              Laundry
+            </h2>
+
+            <p class="text-muted mb-4">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a
+              dictum purus. Etiam vel dui feugiat felis placerat venenatis. Cras
+              id purus porta, aliquet risus vel, tincidunt massa. Cras faucibus,
+              orci vel tincidunt efficitur, mi urna vulputate augue, malesuada
+              lacinia tellus turpis ut sem. Mauris hendrerit, nisi in
+              pellentesque scelerisque, nulla urna blandit nulla, vitae lacinia
+              nisl enim id nulla.
+            </p>
+
+            <div class="d-flex align-items-start gap-4 phone-flex">
+              <ul
+                class="list-unstyled mb-0 pe-4 border-end border-2 border-dark"
+              >
+                <li class="mb-2">✔ 100% Customer Satisfaction</li>
+                <li class="mb-2">✔ Free Collection & Delivery</li>
+                <li class="mb-2">✔ Affordable Prices</li>
+                <li class="mb-2">✔ Best Quality</li>
+              </ul>
+
+              <div
+                class="d-flex align-items-center gap-3 ps-4 flex-column justify-content-center"
+              >
+                <div
+                  class="phone-icon border rounded-circle d-flex align-items-center justify-content-center"
+                >
+                  <i class="fa-solid fa-phone fs-4"></i>
                 </div>
+
+                <div>
+                  <small class="text-muted">Call For Quality Services</small>
+                  <h6 class="fw-bold mb-0 text-center">0430 198 510</h6>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
+    </section>
+    <!-- FEATURES SECTION -->
+    <section class="features-section py-4">
+      <div class="container">
+        <div class="row g-3">
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="feature-box active">
+              <i class="fa-solid fa-clock"></i>
+              <h6>Save Time and Money</h6>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="feature-box">
+              <i class="fa-solid fa-credit-card"></i>
+              <h6>Pay Online in Second</h6>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="feature-box">
+              <i class="fa-solid fa-leaf"></i>
+              <h6>Eco - Friendly</h6>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section class="services-section py-5">
+      <div class="container">
+        <div class="text-center mb-4">
+          <span class="section-tag">[Our Services]</span>
+        </div>
+
+        <div
+          id="servicesCarousel"
+          class="carousel slide"
+          data-bs-ride="carousel"
+        >
+          <div class="carousel-inner">
+            <!-- Slide 1 -->
+            <div class="carousel-item active">
+              <div class="row g-4">
+                <div class="col-12 col-md-6 col-lg-4">
+                  <div class="service-card">
+                    <img src="./Assets/Images/service-01.png" alt="" />
+                    <div class="service-overlay">
+                      <i class="fa-solid fa-shirt"></i>
+                      <div class="service-text">
+                        <h6>Laundry Services</h6>
+                        <p>
+                          lorem ipsum dolor sit amet, consectetur adipiscing
+                          elit. Sed a dictum purus.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-4">
+                  <div class="service-card">
+                    <img src="./Assets/Images/service-02.png" alt="" />
+                    <div class="service-overlay">
+                      <i class="fa-solid fa-soap"></i>
+                      <div class="service-text">
+                        <h6>Dry Cleaning</h6>
+                        <p>
+                          lorem ipsum dolor sit amet, consectetur adipiscing
+                          elit. Sed a dictum purus.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-4">
+                  <div class="service-card">
+                    <img src="./Assets/Images/service-01.png" alt="" />
+                    <div class="service-overlay">
+                      <i class="fa-solid fa-shirt"></i>
+                      <div class="service-text">
+                        <h6>Laundry Services</h6>
+                        <p>
+                          lorem ipsum dolor sit amet, consectetur adipiscing
+                          elit. Sed a dictum purus.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="carousel-item">
+              <div class="row g-4">
+                <div class="col-12 col-md-6 col-lg-4">
+                  <div class="service-card">
+                    <img src="./Assets/Images/service-02.png" alt="" />
+                    <div class="service-overlay">
+                      <i class="fa-solid fa-shirt"></i>
+                      <div class="service-text">
+                        <h6>Laundry Services</h6>
+                        <p>
+                          lorem ipsum dolor sit amet, consectetur adipiscing
+                          elit. Sed a dictum purus.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-4">
+                  <div class="service-card">
+                    <img src="./Assets/Images/service-01.png" alt="" />
+                    <div class="service-overlay">
+                      <i class="fa-solid fa-shirt"></i>
+                      <div class="service-text">
+                        <h6>Laundry Services</h6>
+                        <p>
+                          lorem ipsum dolor sit amet, consectetur adipiscing
+                          elit. Sed a dictum purus.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-4">
+                  <div class="service-card">
+                    <img src="./Assets/Images/service-01.png" alt="" />
+                    <div class="service-overlay">
+                      <i class="fa-solid fa-soap"></i>
+                      <div class="service-text">
+                        <h6>Dry Cleaning</h6>
+                        <p>
+                          lorem ipsum dolor sit amet, consectetur adipiscing
+                          elit. Sed a dictum purus.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Controls -->
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#servicesCarousel"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon"></span>
+          </button>
+
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#servicesCarousel"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon"></span>
+          </button>
+        </div>
+      </div>
+    </section>
+    <!-- HOW WE WORK SECTION -->
+    <section class="how-we-work py-5">
+      <div class="container">
+        <div class="row align-flex-start-center g-5">
+          <!-- Left Content -->
+          <div class="col-lg-6">
+            <span class="small-title"
+              >Get Your Clothes Collected & Delivered</span
+            >
+            <h2 class="section-title">How We Work</h2>
+
+            <p class="text-muted">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a
+              dictum purus. Etiam vel dui feugiat felis placerat venenatis. Cras
+              id purus porta, aliquet risus vel, tincidunt massa. Cras faucibus,
+              orci vel tincidunt efficitur, mi urna vulputate augue, malesuada
+              lacinia tellus turpis ut sem. Mauris hendrerit, nisi in
+              pellentesque scelerisque, nulla urna blandit nulla, vitae lacinia
+              nisl enim id nulla.
+            </p>
+
+            <p class="text-muted">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a
+              dictum purus. Etiam vel dui feugiat felis placerat venenatis. Cras
+              id purus porta, aliquet risus vel, tincidunt massa. Cras faucibus,
+              orci vel tincidunt efficitur, mi urna vulputate augue, malesuada
+              lacinia tellus turpis ut sem. Mauris hendrerit, nisi in
+              pellentesque scelerisque, nulla urna blandit nulla, vitae lacinia
+              nisl enim id nulla.
+            </p>
+
+            <div class="service-button">
+              <a href="#" class="btn service-btn mt-3">Get Service Now</a>
+            </div>
+          </div>
+
+          <!-- Right Circular Step -->
+          <div class="col-lg-6 text-center">
+            <div
+              class="step-circle mx-auto"
+              style="background: url(./Assets/Images/how-we-work.png)"
+            >
+              <h5>Bag Up All Your Dirty Clothes</h5>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+
+            <!-- Steps -->
+            <div class="steps mt-4">
+              <span class="step active">1</span>
+              <span class="dot"></span>
+              <span class="step">2</span>
+              <span class="dot"></span>
+              <span class="step">3</span>
+              <span class="dot"></span>
+              <span class="step">4</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMMERCIAL LAUNDRY SECTION -->
+    <section class="commercial-laundry py-5">
+      <div class="container">
+        <div class="row align-items-flex-start g-5">
+          <!-- Image -->
+          <div class="col-lg-6">
+            <img
+              src="./Assets/Images/Laundary-service.png"
+              class="img-fluid rounded"
+              alt=""
+            />
+          </div>
+
+          <!-- Content -->
+          <div class="col-lg-6">
+            <span class="small-title">Laundry service for your business!</span>
+            <h2 class="section-title">Commercial Laundry Service</h2>
+
+            <p class="text-muted">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a
+              dictum purus. Etiam vel dui feugiat felis placerat venenatis. Cras
+              id purus porta, aliquet risus vel, tincidunt massa. Cras faucibus,
+              orci vel tincidunt efficitur, mi urna vulputate augue, malesuada
+              lacinia tellus turpis ut sem. Mauris hendrerit, nisi in
+              pellentesque scelerisque, nulla urna blandit nulla, vitae lacinia
+              nisl enim id nulla.
+            </p>
+
+            <p class="text-muted">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a
+              dictum purus. Etiam vel dui feugiat felis placerat venenatis. Cras
+              id purus porta, aliquet risus vel, tincidunt massa. Cras faucibus,
+              orci vel tincidunt efficitur, mi urna vulputate augue, malesuada
+              lacinia tellus turpis ut sem. Mauris hendrerit, nisi in
+              pellentesque scelerisque, nulla urna blandit nulla, vitae lacinia
+              nisl enim id nulla.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- our approach -->
+
+    <section class="trusted-laundry py-5">
+      <div class="container">
+        <div class="text-center mb-4">
+          <small class="imp-in">Important Information</small>
+          <h2 class="Laundary-service">Trusted Laundry Service</h2>
+        </div>
+
+        <!-- Tabs -->
+        <ul
+          class="nav nav-tabs justify-content-center custom-tabs mb-5"
+          role="tablist"
+        >
+          <li class="nav-item">
+            <button
+              class="nav-link active"
+              data-bs-toggle="tab"
+              data-bs-target="#approach"
+            >
+              Our Approach
+            </button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#qa">
+              Question/Answer
+            </button>
+          </li>
+          <li class="nav-item">
+            <button
+              class="nav-link"
+              data-bs-toggle="tab"
+              data-bs-target="#whyus"
+            >
+              Why Choose Us
+            </button>
+          </li>
+        </ul>
+
+        <!-- Tab Content -->
+        <div class="tab-content">
+          <div class="tab-pane fade show active" id="approach">
+            <div class="row align-items-flex-start gx-5 gy-4">
+              <div class="col-lg-6">
+                <h4 class="fw-bold mb-3 approach">Our Approach</h4>
+                <p class="text-muted">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a
+                  dictum purus. Etiam vel dui feugiat felis placerat venenatis.
+                  Cras id purus porta, aliquet risus vel, tincidunt massa. Cras
+                  faucibus, orci vel tincidunt efficitur, mi urna vulputate
+                  augue, malesuada lacinia tellus turpis ut sem. Mauris
+                  hendrerit, nisi in pellentesque scelerisque, nulla urna
+                  blandit nulla, vitae lacinia nisl enim id nulla.
+                </p>
+                <p class="text-muted">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a
+                  dictum purus. Etiam vel dui feugiat felis placerat venenatis.
+                  Cras id purus porta, aliquet risus vel, tincidunt massa. Cras
+                  faucibus, orci vel tincidunt efficitur, mi urna vulputate
+                  augue, malesuada lacinia tellus turpis ut sem. Mauris
+                  hendrerit, nisi in pellentesque scelerisque, nulla urna
+                  blandit nulla, vitae lacinia nisl enim id nulla.
+                </p>
+              </div>
+
+              <div class="col-lg-6 text-center">
+                <div class="video-box position-relative">
+                  <img src="./Assets/Images/approach.png" class="rounded" />
+                  <span class="play-btn">
+                    <i class="fa-solid fa-play"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-pane fade" id="qa">
+            <p class="text-center text-mutedd">
+              Question & Answer content here
+            </p>
+          </div>
+
+          <div class="tab-pane fade" id="whyus">
+            <p class="text-center text-mutedd">Why Choose Us content here</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- price card -->
+
+    <section class="pricing-title text-center py-5">
+      <div class="container">
+        <small class="imp-in">Affordable Prices</small>
+        <h2 class="Laundary-service">Our Dry Cleaning & Laundry Prices</h2>
+      </div>
+    </section>
+
+    <section class="pricing-cards pb-5">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-lg-3 col-md-6">
+            <div class="price-card text-center">
+              <i class="fa-solid fa-basket-shopping"></i>
+              <h6>Laundry Services</h6>
+              <p class="price">From € 25.00</p>
+              <a href="#" class="btn btn-primary btn-sm">Order Now</a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6">
+            <div class="price-card text-center">
+              <i class="fa-solid fa-shirt"></i>
+              <h6>Dry Cleaning</h6>
+              <p class="price">From € 25.00</p>
+              <a href="#" class="btn btn-primary btn-sm">Order Now</a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6">
+            <div class="price-card text-center">
+              <i class="fa-solid fa-shirt"></i>
+              <h6>Ironing Services</h6>
+              <p class="price">From <span>€ 25.00</span></p>
+              <a href="#" class="btn btn-primary btn-sm">Order Now</a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6">
+            <div class="price-card text-center">
+              <i class="fa-solid fa-scissors"></i>
+              <h6>Alteration & Repair</h6>
+              <p class="price">From € 25.00</p>
+              <a href="#" class="btn btn-primary btn-sm">Order Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- tap clean deliver -->
+    <section class="commercial-laundry py-5">
+      <div class="container">
+        <div class="row align-items-flex-start g-5">
+          <!-- Content -->
+          <div class="col-lg-6">
+            <span class="small-title">Laundry service for your business!</span>
+            <h2 class="section-title">Tap. Clean. Deliver.</h2>
+
+            <p class="text-muted">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a
+              dictum purus. Etiam vel dui feugiat felis placerat venenatis. Cras
+              id purus porta, aliquet risus vel, tincidunt massa. Cras faucibus,
+              orci vel tincidunt efficitur, mi urna vulputate augue, malesuada
+              lacinia tellus turpis ut sem. Mauris hendrerit, nisi in
+              pellentesque scelerisque, nulla urna blandit nulla, vitae lacinia
+              nisl enim id nulla.
+            </p>
+
+            <p class="text-muted">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a
+              dictum purus. Etiam vel dui feugiat felis placerat venenatis. Cras
+              id purus porta, aliquet risus vel, tincidunt massa. Cras faucibus,
+              orci vel tincidunt efficitur, mi urna vulputate augue, malesuada
+              lacinia tellus turpis ut sem. Mauris hendrerit, nisi in
+              pellentesque scelerisque, nulla urna blandit nulla, vitae lacinia
+              nisl enim id nulla.
+            </p>
+          </div>
+          <!-- Image -->
+          <div class="col-lg-6">
+            <img
+              src="./Assets/Images/Vector.png"
+              class="img-fluid rounded"
+              alt=""
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- testimonial section  -->
+
+    <section class="py-5 testimonial-section">
+      <div class="container">
+        <div class="row align-items-flex-start">
+          <!-- LEFT IMAGE GRID -->
+          <div class="col-lg-6 mb-4 mb-lg-0">
+            <div class="row g-3">
+              <div class="col-6">
+                <img
+                  src="./Assets/Images/testimonial-01.png"
+                  class="img-fluid w-100 rounded img-down"
+                />
+              </div>
+
+              <div class="col-6">
+                <img
+                  src="./Assets/Images/testimonial-02.png"
+                  class="img-fluid w-100 rounded img-up"
+                />
+              </div>
+
+              <div class="col-6">
+                <img
+                  src="./Assets/Images/testimonial-03.png"
+                  class="img-fluid w-100 rounded img-down"
+                />
+              </div>
+
+              <div class="col-6">
+                <img
+                  src="./Assets/Images/testimonial-04.png"
+                  class="img-fluid w-100 rounded"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT CONTENT -->
+          <div class="col-lg-6">
+            <span class="text-primary fw-semibold small-title"
+              >Our Testimonials</span
+            >
+            <h2 class="fw-bold my-3 section-title">Excellent Super Services</h2>
+
+            <p class="text-muted">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
+              quis tellus in odio ullamcorper gravida sed eget massa. Phasellus
+              eu fringilla massa. Praesent odio nibh, laoreet ac orci commodo,
+              laoreet dignissim erat. Donec non tellus in massa bibendum
+              vestibulum eget et massa. Cras dapibus accumsan luctus.
+            </p>
+
+            <p class="text-muted">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
+              quis tellus in odio ullamcorper gravida sed eget massa. Phasellus
+              eu fringilla massa. Praesent odio nibh, laoreet ac orci commodo,
+              laoreet dignissim erat. Donec non tellus in massa bibendum
+              vestibulum eget et massa. Cras dapibus accumsan luctus.
+            </p>
+
+            <h6 class="fw-semibold mt-4">– Alice Magsuno</h6>
+
+            <!-- dots -->
+            <div class="testimonial-dots mt-3">
+              <span class="active"></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- pricing section -->
+<section class="pricing-section py-5">
+  <div class="container">
+    
+    <!-- Heading -->
+    <div class="text-center mb-5">
+      <span class="text-primary fw-semibold small-title">What we offer</span>
+      <h2 class="fw-bold section-title mb-4">Price Packages</h2>
     </div>
+
+    <!-- Pricing Cards -->
+    <div class="row g-4 justify-content-center">
+
+      <!-- Card 1 -->
+      <div class="col-lg-4 col-md-6 pricing-carddd">
+        <div class="pricing-card text-center">
+          <div class="icon-circle">
+            <i class="fa-solid fa-shirt"></i>
+          </div>
+
+          <h5 class="mt-4">Enterprise Package</h5>
+          <p class="text-muted">60 cloths per month</p>
+
+          <ul class="list-unstyled pricing-list">
+            <li>4 T Shirt</li>
+            <li>1 Pair of Geans</li>
+            <li>4 Button-Down Shirts</li>
+            <li>2 Pair of Shorts</li>
+            <li>8 Pairs of Underwear</li>
+            <li>6 Pairs of Socks</li>
+            <li>2 Towel</li>
+            <li>2 Set of Sheets</li>
+          </ul>
+
+          <hr>
+
+          <h4 class="price">€399.00</h4>
+
+          <div class="add-btn">
+            <span>+</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="col-lg-4 col-md-6 pricing-carddd">
+        <div class="pricing-card text-center">
+          <div class="icon-circle">
+            <i class="fa-solid fa-shirt"></i>
+          </div>
+
+          <h5 class="mt-4">Enterprise Package</h5>
+          <p class="text-muted">60 cloths per month</p>
+
+          <ul class="list-unstyled pricing-list">
+            <li>4 T Shirt</li>
+            <li>1 Pair of Geans</li>
+            <li>4 Button-Down Shirts</li>
+            <li>2 Pair of Shorts</li>
+            <li>8 Pairs of Underwear</li>
+            <li>6 Pairs of Socks</li>
+            <li>2 Towel</li>
+            <li>2 Set of Sheets</li>
+          </ul>
+
+          <hr>
+
+          <h4 class="price">€399.00</h4>
+
+          <div class="add-btn">
+            <span>+</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="col-lg-4 col-md-6 ">
+        <div class="pricing-card text-center">
+          <div class="icon-circle">
+            <i class="fa-solid fa-shirt"></i>
+          </div>
+
+          <h5 class="mt-4">Enterprise Package</h5>
+          <p class="text-muted">60 cloths per month</p>
+
+          <ul class="list-unstyled pricing-list">
+            <li>4 T Shirt</li>
+            <li>1 Pair of Geans</li>
+            <li>4 Button-Down Shirts</li>
+            <li>2 Pair of Shorts</li>
+            <li>8 Pairs of Underwear</li>
+            <li>6 Pairs of Socks</li>
+            <li>2 Towel</li>
+            <li>2 Set of Sheets</li>
+          </ul>
+
+          <hr>
+
+          <h4 class="price">€399.00</h4>
+
+          <div class="add-btn">
+            <span>+</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </section>
+
+    <!-- Quality Service Section -->
+    <section class="quality-service py-5">
+      <div class="container">
+        <div class="row align-items-center">
+          <!-- Left side - Text content -->
+          <div class="col-lg-6 mb-4 mb-lg-0">
+            <h2 class="mb-3" style="color: #0b8bcb; font-weight: 700">
+              Quality Service with <br />
+              <span style="font-size: 36px">Free Collection & Delivery</span>
+            </h2>
+            <p
+              class="lead"
+              style="color: #333; font-size: 18px; line-height: 1.6"
+            >
+              It is our goal to offer you the best possible laundry and dry
+              cleaning service available.
+            </p>
+          </div>
+
+          <!-- Right side - Image or icon -->
+          <div class="col-lg-6 text-center">
+            <div style="max-width: 400px; margin: 0 auto">
+              <!-- You can add an image or icon here -->
+              <img src="./Assets/Images/car.png" alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
     <!-- map -->
-     <div>
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d865839.2734817828!2d115.302091394688!3d-32.03719273862516!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2a32966cdb47733d%3A0x304f0b535df55d0!2sPerth%20WA%2C%20Australia!5e0!3m2!1sen!2sin!4v1766994412079!5m2!1sen!2sin" width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-     </div>
+    <div>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d865839.2734817828!2d115.302091394688!3d-32.03719273862516!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2a32966cdb47733d%3A0x304f0b535df55d0!2sPerth%20WA%2C%20Australia!5e0!3m2!1sen!2sin!4v1766994412079!5m2!1sen!2sin"
+        width="100%"
+        height="500"
+        style="border: 0"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+    </div>
 
     <!-- FOOTER -->
     <footer class="footer">
@@ -626,7 +943,9 @@
     <!-- FOOTER BOTTOM -->
     <div class="footer-bottom-wrapper">
       <div class="container">
-        <div class="footer-bottom d-flex justify-content-between align-items-center py-3">
+        <div
+          class="footer-bottom d-flex justify-content-between align-items-center py-3"
+        >
           <p class="mb-0">© 2025. All Rights Reserved.</p>
           <div class="footer-links">
             <a href="#" class="me-3">Terms and Conditions</a>
