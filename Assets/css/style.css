@@ -468,29 +468,35 @@
 
 /* FEATURES */
 .features-section {
-  background: #f6f6f6;
+  background: #fff;
 }
 
 .feature-box {
-  background: #eaeaea;
-  padding: 25px;
+  background: linear-gradient(to top, #B0B0B0 0%, #ffffff 100%);
+  padding: 60px 25px;
   text-align: left;
   height: 100%;
   transition: 0.3s;
 }
 
+
 .feature-box i {
-  font-size: 26px;
+  font-size: 36px;
   margin-bottom: 10px;
 }
 
 .feature-box h6 {
   font-weight: 600;
+  font-size: 24px;
+  line-height: 100%;
+  margin-bottom: 20px;
 }
 
 .feature-box p {
-  font-size: 14px;
+  font-size: 15px;
   margin: 0;
+  font-weight: 500;
+  line-height: 100%;
 }
 
 .feature-box.active {
