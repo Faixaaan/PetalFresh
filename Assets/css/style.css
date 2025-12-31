@@ -939,6 +939,295 @@ font-size: 20px;
 }
 
 
+/* contact page  */
+
+.inner-banner {
+  background-size: cover;
+  background-position: center;
+  padding: 120px 0;
+  color: #fff;
+}
+
+.banner-title {
+  font-size: 56px;
+  font-weight: 700;
+  margin-top: 10px;
+}
+
+.breadcrumb-custom {
+  font-size: 16px;
+}
+
+.breadcrumb-custom a {
+  color: #3ad36a;
+  text-decoration: none;
+}
+
+.breadcrumb-custom span,
+.breadcrumb-custom strong {
+  color: #fff;
+}
+
+/* Tablet */
+@media (max-width: 991px) {
+  .banner-title {
+    font-size: 42px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+  .inner-banner {
+    padding: 80px 0;
+  }
+
+  .banner-title {
+    font-size: 32px;
+  }
+
+  .breadcrumb-custom {
+    font-size: 14px;
+  }
+}
+
+.contact-info-section {
+  background: #fff;
+}
+
+.section-tag {
+  color: #3bbf6a;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.section-title {
+  font-size: 40px;
+  font-weight: 700;
+}
+
+.info-box {
+  padding: 20px;
+}
+
+.icon-circle {
+  width: 80px;
+  height: 80px;
+  background: #fff;
+  border-radius: 50%;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  color: #0B8BCB;
+  font-size: 30px;
+}
+
+.info-box h5 {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.info-box p {
+  color: #777;
+  font-size: 15px;
+  margin: 0;
+}
+
+/* Tablet */
+@media (max-width: 991px) {
+  .section-title {
+    font-size: 32px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+  .section-title {
+    font-size: 26px;
+  }
+
+  .icon-circle {
+    width: 70px;
+    height: 70px;
+    font-size: 26px;
+  }
+}
+
+.contact-section {
+  padding: 60px 0;
+}
+
+.contact-heading {
+  font-size: 40px;
+  font-weight: 700;
+  color: #0B8BCB;
+}
+
+.contact-para{
+    font-size: 18px;
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+.contact-form-box {
+  background: #f5f5f5;
+  padding: 30px;
+  height: 100%;
+}
+
+.map-wrapper {
+  width: 100%;
+  height: 100%;
+  min-height: 500px;
+}
+
+.map-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+/* Tablet */
+@media (max-width: 991px) {
+  .map-wrapper {
+    min-height: 400px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+  .map-wrapper {
+    min-height: 300px;
+  }
+  .contact-heading {
+  font-size: 36px;
+  font-weight: 700;
+  color: #0B8BCB;
+}
+
+.contact-para{
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: 10px;
+}
+.faq-title {
+  font-weight: 700;
+  color: #2c2c2c;
+  font-size: 18px;
+}
+}
+
+/* faq page css */
+.faq-section {
+  background: #fff;
+}
+
+.accordion-item {
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+.accordion-button {
+  font-weight: 600;
+  padding: 20px;
+  border-radius: 10px;
+  font-size: 20px;
+}
+
+.accordion-button:not(.collapsed) {
+  background: #fff;
+  color: #000;
+  box-shadow: none;
+}
+
+
+.accordion-body {
+  color: #6c757d;
+  padding: 0 20px 20px;
+}
+
+.accordion-item {
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+.faq-title {
+  font-weight: 700;
+  color: #2c2c2c;
+  font-size: 20px;
+}
+
+.ask-question-section {
+  background: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Soft background shape (left side) */
+.ask-question-section::before {
+  content: "";
+  position: absolute;
+  left: -200px;
+  top: 50%;
+  width: 500px;
+  height: 500px;
+  background: #f2f6f2;
+  border-radius: 50%;
+  transform: translateY(-50%);
+  z-index: 0;
+}
+
+.ask-question-section .container {
+  position: relative;
+  z-index: 1;
+}
+
+.ask-title {
+  font-weight: 700;
+  color: #2c2c2c;
+}
+
+.ask-subtitle {
+  color: #7a7a7a;
+  font-size: 16px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Inputs */
+.form-control {
+  border-radius: 6px;
+  border: 1px solid #e1e5ee;
+  font-size: 16px;
+  padding: 14px 16px;
+}
+
+.form-control:focus {
+  box-shadow: none;
+  border-color: #0B8BCB;
+}
+
+/* Button */
+.btn-success {
+  background: #0B8BCB;
+  border: none;
+  border-radius: 4px;
+}
+
+.btn-success:hover {
+  background: #fff;
+  color: #0B8BCB;
+  border: 1px solid #0B8BCB ;
+}
+
+
+
+
 
 
   
