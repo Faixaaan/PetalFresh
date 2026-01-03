@@ -1225,6 +1225,170 @@ font-size: 20px;
   border: 1px solid #0B8BCB ;
 }
 
+/* service */
+
+.service-sidebar {
+  background: #f3f7f5;
+  padding: 0px;
+}
+
+.service-item {
+  padding: 18px 22px;
+  font-weight: 600;
+  color: #333;
+  cursor: pointer;
+}
+
+.service-item:not(:last-child) {
+  margin-bottom: 8px;
+}
+
+.service-item.active {
+  background-color: #0B8BCB;
+  color: #fff;
+  border-radius: 2px;
+}
+
+/* Image fit */
+.service-image img {
+  object-fit: cover;
+}
+
+.service-details {
+  background: #f7f9f8;
+}
+
+/* LEFT BOX */
+.contact-box {
+  background: #ffffff;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  border-radius: 6px;
+}
+
+.contact-box h4 {
+  font-weight: 700;
+}
+
+.contact-list li {
+  margin-bottom: 15px;
+  color: #555;
+  font-size: 15px;
+}
+
+.contact-list .icon {
+  color: #4caf50;
+  margin-right: 8px;
+}
+
+/* BUTTON */
+.schedule-btn {
+  background: #0B8BCB;
+  color: #fff;
+  padding: 12px 20px;
+  font-weight: 600;
+  border-radius: 0;
+}
+
+.schedule-btn:hover {
+  background: #fff;
+  color: #000;
+  border: 1px solid #0B8BCB;
+}
+
+/* RIGHT CONTENT */
+.section-tag {
+  color: #0B8BCB;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.service-content h2 {
+  font-size: 40px;
+  font-weight: 700;
+}
+
+.highlight-text {
+  border-left: 4px solid #0B8BCB;
+  padding-left: 15px;
+  color: #777;
+  line-height: 1.8;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .service-content h2 {
+    font-size: 30px;
+  }
+}
+
+.service-extra {
+  background: #f7f9f8;
+}
+
+/* FORM */
+.question-form .form-control {
+  border-radius: 4px;
+  padding: 12px;
+  font-size: 14px;
+}
+
+.ask-btn {
+  background: #0B8BCB;
+  color: #fff;
+  padding: 12px;
+  font-weight: 600;
+  border-radius: 0;
+}
+
+.ask-btn:hover {
+  background: #fff;
+  color: #000;
+  border: 1px solid #0B8BCB;
+}
+
+/* CONTENT */
+.content-box h2 {
+  font-weight: 700;
+  font-size: 34px;
+}
+
+.content-box p {
+  color: #777;
+  line-height: 1.8;
+}
+
+/* CHECKLIST */
+.checklist ul {
+  list-style: none;
+  padding: 0;
+}
+
+.checklist li {
+  position: relative;
+  padding-left: 28px;
+  margin-bottom: 12px;
+  color: #666;
+}
+
+.checklist li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #0B8BCB;
+  font-weight: 600;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .content-box h2 {
+    font-size: 26px;
+  }
+}
+
+
+
+
 
 
 
