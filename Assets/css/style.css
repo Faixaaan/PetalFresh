@@ -1751,6 +1751,15 @@
     padding: 0px 0;
 
   }
+  .testimonial-section{
+    padding: 0px !important;
+  }
+  .commercial-laundry{
+    padding: 0px !important;
+  }
+  .services-section{
+     padding: 0px !important;
+  }
 }
 
 .team-section {
