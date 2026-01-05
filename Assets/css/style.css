@@ -658,7 +658,7 @@
 }
 
 .text-muted {
-   color: #666;
+  color: #666;
   font-size: 15px;
   line-height: 1.6;
 }
@@ -740,13 +740,14 @@
   .pricing-carddd {
     margin-bottom: 50px !important;
   }
+
   .Laundary-service {
-  font-size: 28px !important;
-  line-height: 100%;
-  color: #000;
-  margin-top: 20px !important;
-  font-weight: 700;
-}
+    font-size: 28px !important;
+    line-height: 100%;
+    color: #000;
+    margin-top: 20px !important;
+    font-weight: 700;
+  }
 }
 
 .custom-tabs .nav-link {
@@ -1027,6 +1028,7 @@
   .breadcrumb-custom {
     font-size: 14px;
   }
+
 }
 
 .contact-info-section {
@@ -1617,6 +1619,10 @@
     color: #3bbf6a;
   }
 
+  .why-choose-section::after {
+    display: none;
+  }
+
   /* text */
 
 }
@@ -1711,6 +1717,11 @@
 
   .why-icon img {
     width: 26px;
+  }
+
+  .team-section {
+    padding: 0px 0;
+
   }
 }
 
@@ -1994,11 +2005,10 @@
   display: block;
   height: 500px;
 }
+
 .map-wrapperr iframe {
   display: block;
   width: 100%;
   height: 600px;
   border: 0;
 }
-
-
