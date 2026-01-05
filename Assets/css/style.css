@@ -749,6 +749,7 @@
     margin-top: 20px !important;
     font-weight: 700;
   }
+  
 }
 
 .custom-tabs .nav-link {
@@ -915,6 +916,12 @@
   .pricing-carddd {
     margin-bottom: 50px !important;
   }
+  .testimonial-dots{
+  text-align: center;
+}
+.testimonial-name{
+  text-align: center;
+}
 
 }
 
@@ -1492,6 +1499,10 @@
   border-right: 1px solid #eee;
 }
 
+.nav-item a{
+  padding: 10px 20px !important;
+}
+
 .price-tabs .nav-item:last-child .nav-link {
   border-right: none;
 }
@@ -1536,6 +1547,9 @@
   .price-row {
     padding: 12px 20px;
   }
+  .nav-item a{
+  padding: 10px 0px !important;
+}
 }
 
 /* abou us  */
