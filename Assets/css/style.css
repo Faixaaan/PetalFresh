@@ -21,7 +21,8 @@
 .nav-link {
   color: white !important;
   font-weight: 500;
-  padding: 10px 25px !important;
+  padding: 10px 5px !important;
+  margin-top: 10px;
 }
 
 .nav-link:hover,
@@ -1160,6 +1161,9 @@
     color: #2c2c2c;
     font-size: 18px;
   }
+  .contact-section {
+    padding: 0px;
+  }
 }
 
 /* faq page css */
@@ -1362,6 +1366,16 @@
   .service-content h2 {
     font-size: 30px;
   }
+  .highlight-text {
+  text-align: center;
+}
+.text-centerr{
+  text-align: center;
+}
+.ask-btn {
+  display: block;
+  margin: 0 auto;
+}
 }
 
 .service-extra {
