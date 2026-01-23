@@ -121,62 +121,78 @@
 
             <form>
 
-                <!-- 1. Select Service -->
+                
+
+                <!-- Personal Details -->
+                <div class="grid-2">
+
+                    <!-- 6. Full Name -->
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" placeholder="Enter full name" />
+                    </div>
+
+                    <!-- 7. Phone -->
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" placeholder="Enter phone number" />
+                    </div>
+
+                </div>
+
+                <!-- 8. Address -->
                 <div class="form-group">
-                    <label>Select a Service</label>
+                    <label>Address</label>
+                    <input type="text" placeholder="Street address" />
+                </div>
+
+                <div class="grid-3">
+
+                    <!-- 9. Suburb -->
+                    <div class="form-group">
+                        <label>Suburb</label>
+                        <input type="text" />
+                    </div>
+
+                    <!-- 10. State -->
+                    <div class="form-group">
+                        <label>State</label>
+                        <input type="text" />
+                    </div>
+
+                    <!-- 11. Post Code -->
+                    <div class="form-group">
+                        <label>Post Code</label>
+                        <input type="text" />
+                    </div>
+
+                </div>
+
+                <!-- 12. Country -->
+                <div class="form-group">
+                    <label>Country</label>
                     <select>
-                        <option value="">Select</option>
-                        <option>Laundry</option>
-                        <option>Dry Cleaning</option>
+                        <option value="">India</option>
+                        <option>Australia</option>
+                        <option>New-Zeland</option>
                     </select>
                 </div>
 
-                <!-- 2. Pickup & Delivery -->
+                <!-- 13. Email -->
                 <div class="form-group">
-                    <label>Do you require pickup & delivery service?</label>
-                    <small>Please note a minimum charge is required for pickup and delivery.</small>
-                    <select>
-                        <option value="">Select</option>
-                        <option>Yes</option>
-                        <option>No</option>
-                    </select>
+                    <label>Email</label>
+                    <input type="email" placeholder="Enter email address" />
                 </div>
 
-                <!-- 3. Laundry Service -->
+                <!-- 14. Special Delivery Instruction -->
                 <div class="form-group">
-                    <label>Select Laundry Service</label>
-                    <select>
-                        <option value="">Select</option>
-                        <option>Wash, Dry & Fold</option>
-                        <option>Wash & Iron</option>
-                    </select>
+                    <label>Special Delivery Instruction</label>
+                    <textarea rows="3" placeholder="Enter delivery instructions"></textarea>
                 </div>
-
-                <!-- 4. Washing Instructions -->
-                <div class="form-group">
-                    <label>Washing Instruction for Whites & Colors</label>
-                    <small>For efficiency and cost-effectiveness, if you provide a load of laundry without specifying
-                        that whites and colors be separated, all items will be washed together. Please note that we
-                        cannot be held responsible for any color runs that might occur as a result.
-                        Separate washing requires an extra load, and the corresponding charge will apply.</small>
-                    <select>
-                        <option value="">Select</option>
-                        <option>Combined Washing</option>
-                        <option>Separate Washing</option>
-                    </select>
-                </div>
-
-                <!-- 5. Special Instruction -->
-                <div class="form-group">
-                    <label>Special Instruction</label>
-                    <textarea rows="3" placeholder="Enter special instructions"></textarea>
-                </div>
-
-               
 
                 <!-- Submit -->
                 <button type="button" class="submit-btn" onclick="redirectToThankYou()">
-                    Submit Your Personal Details
+                    Submit Request
                 </button>
 
             </form>
@@ -262,7 +278,7 @@
     
 <script>
   function redirectToThankYou() {
-    window.location.href = "./personalDetails.html";
+    window.location.href = "./thankyou.html";
   }
 </script>
 
