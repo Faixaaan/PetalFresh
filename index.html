@@ -423,22 +423,22 @@
             </div>
 
             <div class="how-step" data-step="1">
-            <div class="step-div">
+              <div class="step-div">
                 <img src="./Assets/Images/how-we-work-01.png" alt="">
                 <div class="step-para">
                   <h5><span>Bag Up</span> Your Clothes</h5>
-                  <p>Lorem ipsum dolor sit, amet consectetur  </p>
+                  <p>Lorem ipsum dolor sit, amet consectetur </p>
                 </div>
 
               </div>
             </div>
 
             <div class="how-step" data-step="2">
-             <div class="step-div">
+              <div class="step-div">
                 <img src="./Assets/Images/how-we-work-01.png" alt="">
                 <div class="step-para">
                   <h5><span>Bag Up</span> Your Clothes</h5>
-                  <p>Lorem ipsum dolor sit, amet consectetur adipisicing  </p>
+                  <p>Lorem ipsum dolor sit, amet consectetur adipisicing </p>
                 </div>
 
               </div>
@@ -936,21 +936,19 @@
   <section class="py-5 testimonial-section">
     <div class="container">
       <div class="row align-items-flex-start">
+
         <!-- LEFT IMAGE GRID -->
         <div class="col-lg-6 mb-4 mb-lg-0">
-          <div class="row g-3">
+          <div class="row g-3" id="testimonial-images">
             <div class="col-6">
               <img src="./Assets/Images/testimonial-01.png" class="img-fluid w-100 rounded img-down" />
             </div>
-
             <div class="col-6">
               <img src="./Assets/Images/testimonial-02.png" class="img-fluid w-100 rounded img-up" />
             </div>
-
             <div class="col-6">
               <img src="./Assets/Images/testimonial-03.png" class="img-fluid w-100 rounded img-down" />
             </div>
-
             <div class="col-6">
               <img src="./Assets/Images/testimonial-04.png" class="img-fluid w-100 rounded" />
             </div>
@@ -960,36 +958,33 @@
         <!-- RIGHT CONTENT -->
         <div class="col-lg-6">
           <span class="text-primary fw-semibold small-title">Our Testimonials</span>
-          <h2 class="fw-bold my-3 section-title">Excellent Super Services</h2>
+          <h2 class="fw-bold my-3 section-title" id="testimonial-title">Excellent Super Services</h2>
 
-          <p class="text-muted">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-            quis tellus in odio ullamcorper gravida sed eget massa. Phasellus
-            eu fringilla massa. Praesent odio nibh, laoreet ac orci commodo,
-            laoreet dignissim erat. Donec non tellus in massa bibendum
-            vestibulum eget et massa. Cras dapibus accumsan luctus.
+          <p class="text-muted" id="testimonial-text-1">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque quis
+            tellus in odio ullamcorper gravida sed eget massa.
           </p>
 
-          <p class="text-muted">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-            quis tellus in odio ullamcorper gravida sed eget massa. Phasellus
-            eu fringilla massa. Praesent odio nibh, laoreet ac orci commodo,
-            laoreet dignissim erat. Donec non tellus in massa bibendum
-            vestibulum eget et massa. Cras dapibus accumsan luctus.
+          <p class="text-muted" id="testimonial-text-2">
+            Phasellus eu fringilla massa. Praesent odio nibh, laoreet ac orci
+            commodo, laoreet dignissim erat.
           </p>
 
-          <h6 class="fw-semibold mt-4 testimonial-name">– Alice Magsuno</h6>
+          <h6 class="fw-semibold mt-4 testimonial-name" id="testimonial-name">
+            – Alice Magsuno
+          </h6>
 
           <!-- dots -->
           <div class="testimonial-dots mt-3">
-            <span class="active"></span>
-            <span></span>
-            <span></span>
+            <span class="active" data-index="0"></span>
+            <span data-index="1"></span>
+            <span data-index="2"></span>
           </div>
         </div>
       </div>
     </div>
   </section>
+
 
 
   <!-- map -->
@@ -1090,6 +1085,99 @@
       document.querySelectorAll('.step')[index].classList.add('active');
     }
   </script>
+  <script>
+  const testimonials = [
+    {
+      title: "Excellent Super Services",
+      images: [
+        "./Assets/Images/testimonial-01.png",
+        "./Assets/Images/testimonial-02.png",
+        "./Assets/Images/testimonial-03.png",
+        "./Assets/Images/testimonial-04.png",
+      ],
+      text1:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque quis tellus in odio ullamcorper gravida sed eget massa.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque quis tellus in odio ullamcorper gravida sed eget massa.",
+      text2:
+        "Phasellus eu fringilla massa. Praesent odio nibh, laoreet ac orci commodo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque quis tellus in odio ullamcorper gravida sed eget massa.",
+      name: "– Alice Magsuno "
+    },
+    {
+      title: "Excellent Super ",
+      images: [
+        "./Assets/Images/testimonial-01.png",
+        "./Assets/Images/testimonial-02.png",
+        "./Assets/Images/testimonial-03.png",
+        "./Assets/Images/testimonial-04.png",
+      ],
+      text1:
+        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque quis tellus in odio ullamcorper gravida sed eget massa.",
+      text2:
+        "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque quis tellus in odio ullamcorper gravida sed eget massa.",
+      name: "– John Peterson ",
+    },
+    {
+      title: "Excellent Super Service",
+      images: [
+        "./Assets/Images/testimonial-01.png",
+        "./Assets/Images/testimonial-02.png",
+        "./Assets/Images/testimonial-03.png",
+        "./Assets/Images/testimonial-04.png",
+      ],
+      text1:
+        "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque quis tellus in odio ullamcorper gravida sed eget massa.",
+      text2:
+        "Et harum quidem rerum facilis est et expedita distinctio.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque quis tellus in odio ullamcorper gravida sed eget massa.",
+      name: "– Sophia Williams",
+    },
+  ];
+
+  const dots = document.querySelectorAll(".testimonial-dots span");
+  const title = document.getElementById("testimonial-title");
+
+  const imagesWrapper = document.getElementById("testimonial-images");
+  const text1 = document.getElementById("testimonial-text-1");
+  const text2 = document.getElementById("testimonial-text-2");
+  const name = document.getElementById("testimonial-name");
+
+  dots.forEach((dot) => {
+    dot.addEventListener("click", () => {
+      const index = dot.dataset.index;
+
+      // fade out
+      imagesWrapper.classList.add("fade-out");
+      text1.classList.add("fade-out");
+      text2.classList.add("fade-out");
+      name.classList.add("fade-out");
+      title.classList.add("fade-out");
+
+      setTimeout(() => {
+        // change images
+        const imgs = imagesWrapper.querySelectorAll("img");
+        imgs.forEach((img, i) => {
+          img.src = testimonials[index].images[i];
+        });
+        title.textContent = testimonials[index].title;
+
+        // change text
+        text1.textContent = testimonials[index].text1;
+        text2.textContent = testimonials[index].text2;
+        name.textContent = testimonials[index].name;
+
+        // fade in
+        imagesWrapper.classList.remove("fade-out");
+        text1.classList.remove("fade-out");
+        text2.classList.remove("fade-out");
+        name.classList.remove("fade-out");
+        title.classList.remove("fade-out");
+      }, 300);
+
+      // active dot
+      dots.forEach((d) => d.classList.remove("active"));
+      dot.classList.add("active");
+    });
+  });
+</script>
+
 
 </body>
 

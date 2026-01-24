@@ -2637,6 +2637,35 @@ hr {
    width: 280px;
    
 }
+.testimonial-dots span {
+  width: 10px;
+  height: 10px;
+  background: #ccc;
+  display: inline-block;
+  border-radius: 50%;
+  margin-right: 6px;
+  cursor: pointer;
+}
+
+.testimonial-dots span.active {
+  background: #0d6efd;
+}
+
+#testimonial-images img,
+#testimonial-text-1,
+#testimonial-text-2,
+#testimonial-name {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.fade-out {
+  opacity: 0;
+  transform: translateY(10px);
+}
+#testimonial-title {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
 
 
 
