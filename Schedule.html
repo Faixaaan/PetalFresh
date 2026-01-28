@@ -114,16 +114,17 @@
     <!-- contact card -->
 
 
-    <section class="form-section">
-        <div class="form-container">
-            <h2>Laundry Service Request</h2>
-            <p class="subtitle">Fill in the details below to place your laundry order</p>
+    <section class="pf-booking">
+        <div class="pf-card">
 
-            <form>
 
-                <!-- 1. Select Service -->
-                <div class="form-group">
-                    <label>Select a Service</label>
+
+
+            <form id="pfForm">
+
+                <!-- STEP 1 -->
+                <div class="pf-step active">
+                    <h2>Select a Service</h2>
                     <select>
                         <option value="">Select</option>
                         <option>Laundry</option>
@@ -131,20 +132,20 @@
                     </select>
                 </div>
 
-                <!-- 2. Pickup & Delivery -->
-                <div class="form-group">
-                    <label>Do you require pickup & delivery service?</label>
-                    <small>Please note a minimum charge is required for pickup and delivery.</small>
-                    <select>
-                        <option value="">Select</option>
-                        <option>Yes</option>
-                        <option>No</option>
-                    </select>
+                <!-- STEP 2 -->
+                <div class="pf-step">
+                    <h2>Do you require Pick Up & Delivery Service? <span>*</span></h2>
+                    <p>Please note a minimum charge is required.</p>
+
+                    <div class="pf-options">
+                        <button type="button" onclick="pfSelect(this)">YES</button>
+                        <button type="button" onclick="pfSelect(this)">NO</button>
+                    </div>
                 </div>
 
-                <!-- 3. Laundry Service -->
-                <div class="form-group">
-                    <label>Select Laundry Service</label>
+                <!-- STEP 3 -->
+                <div class="pf-step">
+                    <h2>Select Laundry Service</h2>
                     <select>
                         <option value="">Select</option>
                         <option>Wash, Dry & Fold</option>
@@ -152,13 +153,9 @@
                     </select>
                 </div>
 
-                <!-- 4. Washing Instructions -->
-                <div class="form-group">
-                    <label>Washing Instruction for Whites & Colors</label>
-                    <small>For efficiency and cost-effectiveness, if you provide a load of laundry without specifying
-                        that whites and colors be separated, all items will be washed together. Please note that we
-                        cannot be held responsible for any color runs that might occur as a result.
-                        Separate washing requires an extra load, and the corresponding charge will apply.</small>
+                <!-- STEP 4 -->
+                <div class="pf-step">
+                    <h2>Washing Instructions</h2>
                     <select>
                         <option value="">Select</option>
                         <option>Combined Washing</option>
@@ -166,22 +163,108 @@
                     </select>
                 </div>
 
-                <!-- 5. Special Instruction -->
-                <div class="form-group">
-                    <label>Special Instruction</label>
-                    <textarea rows="3" placeholder="Enter special instructions"></textarea>
+                <!-- STEP 5 -->
+                <div class="pf-step">
+                    <h2>Special Instructions</h2>
+                    <textarea rows="4" placeholder="Enter instructions"></textarea>
+                </div>
+                <div class="pf-step">
+                    <h2>Full Name <span>*</span></h2>
+                    <div class="row">
+                        <div class=" col-6">
+
+                            <input type="text" placeholder="First Name" />
+                        </div>
+                        <div class="col-6">
+
+                            <input type="text" placeholder="Last Name" />
+                        </div>
+                    </div>
+
+
+
+                </div>
+                <div class="pf-step">
+                    <label>Phone Number</label>
+                    <input type="tel" placeholder="Enter phone number" />
+                </div>
+                <!-- ADDRESS STEP -->
+                <div class="pf-step">
+                    <h2>Address <span>*</span></h2>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <input type="text" placeholder="Search address" />
+                        </div>
+                        <div class="col-12">
+                            <input type="text" placeholder="Street Address" />
+                        </div>
+
+
+
+
+                        <div class="col-6">
+                            <input type="text" placeholder="Suburb" />
+
+                        </div>
+                        <div class="col-6">
+
+                            <input type="text" placeholder="State" />
+                        </div>
+
+                        <div class="col-6">
+                            <input type="text" placeholder="Post Code" />
+
+                        </div>
+                        <div class="col-6">
+                            <select>
+                                <option value="">Select</option>
+                                <option>Australia</option>
+                            </select>
+                        </div>
+                    </div>
+
+
                 </div>
 
-               
 
-                <!-- Submit -->
-                <button type="button" class="submit-btn" onclick="redirectToThankYou()">
-                    Submit Your Personal Details
-                </button>
+                <!-- 13. Email -->
+                <div class="pf-step">
+                    <label>Email</label>
+                    <input type="email" placeholder="Enter email address" />
+                </div>
+                <div class="pf-step">
+                    <label>Special Delivery Instruction</label>
+                    <textarea rows="3" placeholder="Enter delivery instructions"></textarea>
+                </div>
+
+
+
+
+
+
+                <!-- Buttons -->
+                <div class="pf-actions">
+                    <button type="button" id="pfPrev">Back</button>
+                    <button type="button" id="pfNext">Next</button>
+                </div>
 
             </form>
+
+            <!-- Progress -->
         </div>
+
+
     </section>
+
+    <div class="container-sm">
+        <div class="pf-step-bar">
+            <div class="pf-step-indicators"></div>
+            <div class="pf-active-step-label" id="activeStepLabel"></div>
+        </div>
+    </div>
+
+
 
 
 
@@ -259,12 +342,521 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    
-<script>
-  function redirectToThankYou() {
-    window.location.href = "./personalDetails.html";
-  }
-</script>
+
+    <script>
+        function redirectToThankYou() {
+            window.location.href = "./personalDetails.html";
+        }
+    </script>
+
+    <script>
+        let pfStep = 0;
+        const pfSteps = document.querySelectorAll(".pf-step");
+        const stepLabels = [
+            "Select Service",
+            "Pickup Service",
+            "Laundry Service",
+            "Washing Instructions",
+            "Special Instructions",
+            "Personal Details",
+            "Phone Number",
+            "Address",
+            "E-mail",
+            "Special Delivery Instruction"
+
+        ];
+        let isAnimating = false;
+
+        // Create step bar
+        function createStepBar() {
+            const container = document.querySelector('.pf-step-indicators');
+            if (!container) return;
+
+            container.innerHTML = '';
+
+            const progressLine = document.createElement('div');
+            progressLine.className = 'pf-step-progress-line';
+            progressLine.id = 'pfStepProgress';
+            container.appendChild(progressLine);
+
+            for (let i = 0; i < pfSteps.length; i++) {
+                const stepItem = document.createElement('div');
+                stepItem.className = 'pf-step-item';
+                stepItem.setAttribute('data-step', i);
+                stepItem.setAttribute('data-title', stepLabels[i]);
+
+                const circle = document.createElement('div');
+                circle.className = 'pf-step-circle';
+                circle.textContent = i + 1;
+
+                stepItem.appendChild(circle);
+
+                stepItem.addEventListener('click', function () {
+                    if (isAnimating) return;
+                    const clickedStep = parseInt(this.getAttribute('data-step'));
+                    if (clickedStep !== pfStep) {
+                        const direction = clickedStep > pfStep ? 'next' : 'prev';
+                        slideCardToStep(clickedStep, direction);
+                    }
+                });
+
+                container.appendChild(stepItem);
+            }
+
+            updateStepBar();
+        }
+
+        // Check if a step is filled/completed
+        function isStepCompleted(stepIndex) {
+            const stepForm = pfSteps[stepIndex];
+            if (!stepForm) return false;
+
+            const inputs = stepForm.querySelectorAll('input, select, textarea');
+
+            // Special handling for step 2 (YES/NO buttons)
+            if (stepIndex === 1) {
+                const buttons = stepForm.querySelectorAll('.pf-options button');
+                const anyButtonActive = Array.from(buttons).some(btn => btn.classList.contains('active'));
+                return anyButtonActive;
+            }
+
+            // For other steps, check if any field has value
+            let hasValue = false;
+
+            inputs.forEach(field => {
+                if (field.tagName === 'SELECT') {
+                    if (field.value && field.value.trim() !== '') {
+                        hasValue = true;
+                    }
+                } else if (field.tagName === 'TEXTAREA') {
+                    if (field.value && field.value.trim() !== '') {
+                        hasValue = true;
+                    }
+                } else if (field.type !== 'button') {
+                    if (field.value && field.value.trim() !== '') {
+                        hasValue = true;
+                    }
+                }
+            });
+
+            return hasValue;
+        }
+
+        function updateStepBar() {
+            const progressLine = document.getElementById('pfStepProgress');
+            const stepItems = document.querySelectorAll('.pf-step-item');
+
+            if (progressLine) {
+                const progressPercent = (pfStep / (stepItems.length - 1)) * 100;
+                progressLine.style.width = progressPercent + '%';
+            }
+
+            stepItems.forEach((item, index) => {
+                item.classList.remove('active', 'completed', 'skipped');
+
+                if (index === pfStep) {
+                    item.classList.add('active');
+                } else if (index < pfStep) {
+                    // Check if step is completed (has any field filled)
+                    if (isStepCompleted(index)) {
+                        item.classList.add('completed');
+                    } else {
+                        item.classList.add('skipped');
+                    }
+                } else {
+                    // For future steps, also check if they're filled (user jumped ahead)
+                    if (isStepCompleted(index)) {
+                        item.classList.add('completed');
+                    }
+                }
+            });
+
+            const activeLabel = document.getElementById('activeStepLabel');
+            if (activeLabel && stepLabels[pfStep]) {
+                activeLabel.textContent = stepLabels[pfStep];
+            }
+        }
+
+        // SMOOTH SLIDE ANIMATION FOR CARD
+        function slideCardToStep(targetStep, direction) {
+            if (isAnimating) return;
+            isAnimating = true;
+
+            const card = document.querySelector('.pf-card');
+            const currentStepEl = pfSteps[pfStep];
+            const targetStepEl = pfSteps[targetStep];
+
+            // Add slide animation classes
+            card.classList.add('pf-card-sliding', 'pf-card-slide-out-' + direction);
+
+            // After slide out completes, switch content
+            setTimeout(() => {
+                // Hide current step
+                currentStepEl.classList.remove('active');
+
+                // Show target step
+                targetStepEl.classList.add('active');
+
+                // Update step
+                pfStep = targetStep;
+
+                // Remove slide out, add slide in
+                card.classList.remove('pf-card-slide-out-' + direction);
+                card.classList.add('pf-card-slide-in-' + direction);
+
+                // Complete animation
+                setTimeout(() => {
+                    card.classList.remove('pf-card-sliding', 'pf-card-slide-in-next', 'pf-card-slide-in-prev');
+                    updateButtons();
+                    updateStepBar();
+                    isAnimating = false;
+                }, 300);
+            }, 300);
+        }
+
+        // For Next/Prev buttons
+        function navigateStep(direction) {
+            if (isAnimating) return;
+
+            // Mark current step as completed if it has values
+            markCurrentStepAsCompleted();
+
+            if (direction === 'next' && pfStep < pfSteps.length - 1) {
+                slideCardToStep(pfStep + 1, 'next');
+            } else if (direction === 'prev' && pfStep > 0) {
+                slideCardToStep(pfStep - 1, 'prev');
+            } else if (direction === 'next' && pfStep === pfSteps.length - 1) {
+                redirectToThankYou();
+            }
+        }
+
+        // Mark current step as completed based on field values
+        function markCurrentStepAsCompleted() {
+            // This function ensures the step gets marked as completed
+            // The updateStepBar() will check isStepCompleted() anyway
+            updateStepBar();
+        }
+
+        function updateButtons() {
+            document.getElementById("pfPrev").style.display =
+                pfStep === 0 ? "none" : "inline-block";
+
+            document.getElementById("pfNext").innerText =
+                pfStep === pfSteps.length - 1 ? "Submit" : "Next";
+        }
+
+        function showPfStep() {
+            pfSteps.forEach(s => s.classList.remove("active"));
+            pfSteps[pfStep].classList.add("active");
+            updateButtons();
+            updateStepBar();
+        }
+
+        document.getElementById("pfNext").onclick = () => {
+            navigateStep('next');
+        };
+
+        document.getElementById("pfPrev").onclick = () => {
+            navigateStep('prev');
+        };
+
+        function pfSelect(btn) {
+            btn.parentElement
+                .querySelectorAll("button")
+                .forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+
+            // Update step bar immediately when YES/NO is selected
+            updateStepBar();
+        }
+
+        function redirectToThankYou() {
+            window.location.href = "./personalDetails.html";
+        }
+
+        // Add event listeners to detect field changes
+        function setupFieldChangeListeners() {
+            pfSteps.forEach((step, index) => {
+                const fields = step.querySelectorAll('input, select, textarea');
+
+                fields.forEach(field => {
+                    field.addEventListener('input', function () {
+                        // Update step bar when user types in any field
+                        updateStepBar();
+                    });
+
+                    field.addEventListener('change', function () {
+                        // Update step bar when user changes dropdown
+                        updateStepBar();
+                    });
+                });
+            });
+        }
+
+        // Add CSS for smooth slide animation
+        const style = document.createElement('style');
+        style.textContent = `
+        /* Card container for sliding */
+        .pf-card {
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .pf-card-sliding {
+            overflow: visible; /* Allow content to slide out */
+        }
+        
+        /* SLIDE animations */
+        .pf-card-slide-out-next {
+            animation: slideCardOutLeft 0.6s ease forwards;
+        }
+        
+        .pf-card-slide-out-prev {
+            animation: slideCardOutRight 0.6s ease forwards;
+        }
+        
+        .pf-card-slide-in-next {
+            animation: slideCardInRight 0.6s ease forwards;
+        }
+        
+        .pf-card-slide-in-prev {
+            animation: slideCardInLeft 0.6s ease forwards;
+        }
+        
+        /* Slide out animations */
+        @keyframes slideCardOutLeft {
+            0% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes slideCardOutRight {
+            0% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+        
+        /* Slide in animations */
+        @keyframes slideCardInRight {
+            0% {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideCardInLeft {
+            0% {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        /* Step styles */
+        .pf-step {
+            display: none;
+        }
+        
+        .pf-step.active {
+            display: block;
+        }
+        
+        /* Stepper styles */
+        .pf-step-bar {
+            max-width: 700px;
+            margin: 30px auto 40px;
+            position: relative;
+        }
+        
+        .pf-step-indicators {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin-bottom: 20px;
+        }
+        
+        .pf-step-indicators::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: #e5e7eb;
+            z-index: 1;
+        }
+        
+        .pf-step-progress-line {
+            position: absolute;
+            top: 15px;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #0d6efd, #0b5ed7);
+            z-index: 2;
+            transition: width 0.6s ease;
+        }
+        
+        .pf-step-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 3;
+            cursor: pointer;
+        }
+        
+        .pf-step-circle {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: white;
+            border: 3px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: #999;
+            transition: all 0.3s ease;
+        }
+        
+        .pf-step-item.active .pf-step-circle {
+            background: #0d6efd;
+            border-color: #0d6efd;
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        .pf-step-item.completed .pf-step-circle {
+            background: #28a745;
+            border-color: #28a745;
+            color: white;
+        }
+        
+        .pf-step-item.skipped .pf-step-circle {
+            background: #e0e0e0;
+            border-color: #e0e0e0;
+            color: #999;
+        }
+        
+        .pf-active-step-label {
+            text-align: center;
+            font-size: 18px;
+            font-weight: 600;
+            color: #0d6efd;
+            height: 30px;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+    `;
+        document.head.appendChild(style);
+
+        // Initialize
+        createStepBar();
+        showPfStep();
+        setupFieldChangeListeners();
+    </script>
+    <script>
+        const stepNums = document.querySelectorAll(".pf-step-num");
+
+        function updateStepIndicator(step) {
+            stepNums.forEach((num, index) => {
+                num.classList.toggle("active", index === step);
+            });
+        }
+
+        /* Call this inside showPfStep() */
+        updateStepIndicator(pfStep);
+    </script>
+    <script>
+        function redirectToThankYou() {
+            window.location.href = "./thankyou.html";
+        }
+    </script>
+    <script>
+        function validateCurrentStep() {
+            const currentStep = pfSteps[pfStep];
+            const fields = currentStep.querySelectorAll("input, select, textarea");
+
+            let valid = true;
+
+            // remove old errors
+            currentStep.querySelectorAll(".pf-error-text").forEach(e => e.remove());
+            fields.forEach(f => f.classList.remove("pf-error"));
+
+            fields.forEach(field => {
+                if (field.value.trim() === "") {
+                    showError(field, "This field is required");
+                    valid = false;
+                }
+
+                // Email validation
+                if (field.type === "email" && field.value) {
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(field.value)) {
+                        showError(field, "Enter a valid email");
+                        valid = false;
+                    }
+                }
+
+                // Phone validation
+                if (field.type === "tel" && field.value) {
+                    if (field.value.length < 8) {
+                        showError(field, "Enter a valid phone number");
+                        valid = false;
+                    }
+                }
+            });
+
+            return valid;
+        }
+
+        function showError(field, message) {
+            field.classList.add("pf-error");
+
+            const error = document.createElement("div");
+            error.className = "pf-error-text";
+            error.innerText = message;
+
+            field.parentElement.appendChild(error);
+        }
+    </script>
+    <script>
+        document.getElementById("pfNext").onclick = () => {
+            // 🔴 Validate before moving forward
+            if (!validateCurrentStep()) return;
+
+            // ✅ If last step → redirect
+            if (pfStep === pfSteps.length - 1) {
+                redirectToThankYou();
+                return;
+            }
+
+            // Use the same slide animation as stepper clicks
+            navigateStep('next');
+        };
+    </script>
+
+
+
+
 
 
 </body>

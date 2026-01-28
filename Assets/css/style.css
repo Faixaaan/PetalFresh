@@ -2671,5 +2671,337 @@ hr {
 
 
 
+.pf-booking {
+  padding: 80px 20px 50px;
+  display: flex;
+  justify-content: center;
+  background: #FFF;
+}
+
+.pf-card {
+  background: #fff;
+  width: 100%;
+  max-width: 720px;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.15);
+}
+
+/* PROGRESS */
+.pf-progress {
+  height: 6px;
+  background: #e5e7eb;
+  border-radius: 10px;
+  margin-bottom: 60px !important;
+  max-width: 700px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.pf-progress span {
+  display: block;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #0d6efd, #0b5ed7);
+  border-radius: 10px;
+  transition: width 0.4s ease-in-out;
+}
+.pf-step input,
+.pf-step select,
+.pf-step textarea {
+  width: 100%;
+  padding: 14px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  margin-bottom: 16px;
+  font-size: 15px;
+}
+
+.pf-row {
+  display: flex;
+  gap: 16px;
+}
+
+.pf-dot-stepper {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin: 20px 0 30px;
+}
+
+.pf-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #ddd;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.pf-dot.active {
+    background-color: #0d6efd;
+    transform: scale(1.2);
+}
+
+.pf-dot.completed {
+    background-color: #34c759;
+}
+
+.pf-dot:hover {
+    transform: scale(1.1);
+}
+
+.pf-row input,
+.pf-row select {
+  flex: 1;
+}
+
+
+/* STEP */
+.pf-step {
+  display: none;
+}
+
+.pf-step.active {
+  display: block;
+}
+
+
+/* CONTENT */
+.pf-step h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.pf-step p {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 25px;
+}
+
+.pf-step select,
+.pf-step textarea {
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+}
+
+/* YES / NO */
+.pf-options {
+  display: flex;
+  gap: 20px;
+}
+
+.pf-options button {
+  flex: 1;
+  padding: 16px;
+  font-size: 16px;
+  border-radius: 10px;
+  border: 2px solid #0d6efd;
+  background: white;
+  color: #0d6efd;
+  cursor: pointer;
+}
+
+.pf-options button.active {
+  background: #0d6efd;
+  color: white;
+}
+
+/* ACTIONS */
+.pf-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+
+.pf-actions button {
+  padding: 14px 34px;
+  border-radius: 10px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+#pfNext {
+  background: #0d6efd;
+  color: white;
+  margin-left: auto !important;
+}
+
+#pfPrev {
+  background: #e5e7eb;
+  color: #000;
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+  .pf-card {
+    padding: 25px;
+  }
+
+  .pf-options {
+    flex-direction: column;
+  }
+
+  .pf-actions {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
+.pf-error {
+  border: 2px solid #dc3545 !important;
+}
+
+.pf-error-text {
+  color: #dc3545;
+  font-size: 13px;
+  margin-top: 6px;
+}
+/* Add these styles to your existing CSS */
+.pf-step-bar {
+    max-width: 700px;
+    margin: 30px auto 40px;
+    position: relative;
+}
+
+.pf-step-indicators {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+/* Connecting line */
+.pf-step-indicators::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: #e5e7eb;
+    z-index: 1;
+}
+
+/* Progress line */
+.pf-step-progress-line {
+    position: absolute;
+    top: 15px;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #0d6efd, #0b5ed7);
+    z-index: 2;
+    transition: width 0.4s ease-in-out;
+}
+
+.pf-step-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 3;
+    cursor: pointer;
+}
+
+.pf-step-circle {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: white;
+    border: 3px solid #e5e7eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    color: #999;
+    transition: all 0.3s ease;
+}
+
+/* Active step */
+.pf-step-item.active .pf-step-circle {
+    background: #0d6efd;
+    border-color: #0d6efd;
+    color: white;
+    transform: scale(1.1);
+}
+
+/* Completed step */
+.pf-step-item.completed .pf-step-circle {
+    background: #28a745;
+    border-color: #28a745;
+    color: white;
+}
+
+/* Active Step Label Display */
+.pf-active-step-label {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    color: #0d6efd;
+    height: 30px;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .pf-step-circle {
+        width: 28px;
+        height: 28px;
+        font-size: 14px;
+    }
+    
+    .pf-active-step-label {
+        font-size: 16px;
+    }
+}
+/* Make ALL steps look clickable */
+.pf-step-item {
+    cursor: pointer;
+}
+
+.pf-step-item:hover .pf-step-circle {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.2);
+}
+
+.pf-step-item:hover .pf-step-circle:not(.active):not(.completed) {
+    border-color: #999;
+}
+
+.pf-step-item.completed:hover .pf-step-circle {
+    border-color: #28a745;
+    box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.2);
+}
+/* Skipped step style */
+.pf-step-item.skipped .pf-step-circle {
+    background: #e0e0e0;
+    border-color: #e0e0e0;
+    color: #999;
+}
+
+/* Optional: Add warning style for skipped steps */
+.pf-step-item.skipped .pf-step-circle::after {
+    content: '⚠';
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    font-size: 10px;
+    color: #ffc107;
+    background: white;
+    border-radius: 50%;
+    width: 14px;
+    height: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
 
 
