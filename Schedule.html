@@ -1420,6 +1420,7 @@
         // ADD this at the top with your other variables:
         let shouldSkipStep3 = false;
         let pickupChoice = '';
+        let mainServiceSelected = ''; // Track which main service was selected
 
         // MODIFY your navigateStep function like this:
         function navigateStep(direction) {
@@ -1468,26 +1469,16 @@
 
                 slideCardToStep(nextStep, 'next');
             } else if (direction === 'prev') {
-                // When going back from any step after the skipped section, if NO was selected, go back to step 2
-                if (pfStep > 2 && localStorage.getItem('pickupChoice') === 'no') {
+                // Only go back directly to step 2 if you're ON the Dry Cleaning step itself
+                // Check by id attribute instead of element reference
+                if (pfSteps[pfStep] && pfSteps[pfStep].id === 'dryCleaningStep' && 
+                    localStorage.getItem('pickupChoice') === 'no' && mainServiceSelected === 'dryclean') {
                     slideCardToStep(1, 'prev'); // go back directly to step 2
                     return;
                 }
 
+                // For all other steps, just go to the previous step
                 let prevStep = pfStep - 1;
-
-                // Skip ALL hidden steps going backward (including Laundry, Washing, and Dry Cleaning)
-                while (prevStep >= 0 && pfSteps[prevStep]) {
-                    const step = pfSteps[prevStep];
-                    const isHidden = step.style.display === 'none';
-                    const isDryCleaningAndNotSelected = step.id === 'dryCleaningStep' && !showDryCleaning;
-                    
-                    if (isHidden || isDryCleaningAndNotSelected) {
-                        prevStep--;
-                    } else {
-                        break;
-                    }
-                }
 
                 if (prevStep < 0) return;
 
@@ -1654,6 +1645,9 @@
 
             function applyMainService() {
                 const val = mainSelect ? mainSelect.value : '';
+                mainServiceSelected = val; // Store the selected main service
+                localStorage.setItem('mainService', val); // Also save to localStorage for persistence
+                
                 const laundryStep = document.getElementById('laundryStep');
                 const washingStep = document.getElementById('washingStep');
                 const dryStepEl = document.getElementById('dryCleaningStep');
@@ -1708,6 +1702,13 @@
             // apply initial state
             if (mainSelect) applyMainService();
             if (laundrySelect) toggleDryCleaningStep();
+            
+            // Restore mainService from localStorage if it exists
+            const savedMainService = localStorage.getItem('mainService');
+            if (savedMainService && mainSelect) {
+                mainSelect.value = savedMainService;
+                mainServiceSelected = savedMainService;
+            }
         });
 
     </script>
