@@ -903,13 +903,7 @@
                 const stepItem = document.createElement('div');
                 stepItem.className = 'pf-step-item';
                 stepItem.setAttribute('data-step', i);
-                // derive a title from the step element (fall back to stepLabels)
-                let derivedTitle = stepLabels[i];
-                if (pfSteps[i]) {
-                    const h = pfSteps[i].querySelector('h2, label');
-                    if (h && h.textContent.trim()) derivedTitle = h.textContent.trim();
-                }
-                stepItem.setAttribute('data-title', derivedTitle);
+                stepItem.setAttribute('data-title', stepLabels[i]);
 
                 const circle = document.createElement('div');
                 circle.className = 'pf-step-circle';
@@ -1023,29 +1017,6 @@
             }
         }
 
-        // Rebuild the visible pfSteps array based on current element visibility
-        function refreshPfSteps() {
-            const all = Array.from(document.querySelectorAll('#pfForm .pf-step'));
-            pfSteps = all.filter(el => {
-                try {
-                    const cs = window.getComputedStyle(el);
-                    return cs && cs.display !== 'none';
-                } catch (e) {
-                    return true;
-                }
-            });
-        }
-
-        // Find visible step index by heading text (case-insensitive)
-        function findStepByHeading(text) {
-            const needle = text.toLowerCase();
-            for (let i = 0; i < pfSteps.length; i++) {
-                const heading = pfSteps[i].querySelector('h2, label');
-                if (heading && heading.textContent.toLowerCase().includes(needle)) return i;
-            }
-            return -1;
-        }
-
         // SMOOTH SLIDE ANIMATION FOR CARD
         function slideCardToStep(targetStep, direction) {
             if (isAnimating) return;
@@ -1083,54 +1054,25 @@
             }, 300);
         }
 
-        // For Next/Prev buttons - robust version: find next/prev visible .pf-step in DOM order
+        // For Next/Prev buttons
         function navigateStep(direction) {
             if (isAnimating) return;
 
-            // Ensure our visible steps list is up to date
-            refreshPfSteps();
+            let nextStep = pfStep + (direction === 'next' ? 1 : -1);
 
-            // Current active element
-            let currentEl = pfSteps[pfStep];
-            if (!currentEl) currentEl = document.querySelector('#pfForm .pf-step.active');
-
-            const all = Array.from(document.querySelectorAll('#pfForm .pf-step'));
-            let idx = all.indexOf(currentEl);
-            if (idx === -1) {
-                // fallback to first visible
-                for (let i = 0; i < all.length; i++) {
-                    const cs = window.getComputedStyle(all[i]);
-                    if (cs && cs.display !== 'none') { idx = i; break; }
-                }
-                if (idx === -1) return;
+            // Skip any steps that are hidden (display: none)
+            while (pfSteps[nextStep] && pfSteps[nextStep].style && pfSteps[nextStep].style.display === 'none') {
+                nextStep += direction === 'next' ? 1 : -1;
             }
 
-            let candidate = idx;
-            if (direction === 'next') {
-                candidate++;
-                while (candidate < all.length) {
-                    const cs = window.getComputedStyle(all[candidate]);
-                    if (cs && cs.display !== 'none') break;
-                    candidate++;
-                }
-                if (candidate >= all.length) return; // no next
-            } else {
-                candidate--;
-                while (candidate >= 0) {
-                    const cs = window.getComputedStyle(all[candidate]);
-                    if (cs && cs.display !== 'none') break;
-                    candidate--;
-                }
-                if (candidate < 0) return; // no prev
+            // Also skip Dry Cleaning step if not applicable
+            while (pfSteps[nextStep] && pfSteps[nextStep].id === 'dryCleaningStep' && !showDryCleaning) {
+                nextStep += direction === 'next' ? 1 : -1;
             }
 
-            // candidate is a DOM step element index in all. Convert to pfSteps index
-            const targetEl = all[candidate];
-            refreshPfSteps();
-            const targetIndex = pfSteps.indexOf(targetEl);
-            if (targetIndex === -1) return;
+            if (nextStep < 0 || nextStep >= pfSteps.length) return;
 
-            slideCardToStep(targetIndex, direction);
+            slideCardToStep(nextStep, direction);
         }
 
 
@@ -1456,56 +1398,22 @@
             // 2. Store the selection
             localStorage.setItem('pickupChoice', isYes ? 'yes' : 'no');
 
-            const pickupAck = document.querySelector('.pf-pickup-ack');
-
-            // 3. If NO is selected, hide pick-up acknowledgement step and go to the next visible step
+            // 3. If NO is selected, skip step 3 entirely
             if (!isYes) {
+                // Mark that step 3 should be skipped
                 shouldSkipStep3 = true;
 
-                if (pickupAck) {
-                    pickupAck.style.display = 'none';
-                    refreshPfSteps();
-                    updateStepBar();
-                }
-
+                // Wait a moment then jump to step 4
                 setTimeout(() => {
-                    // Hide the 3rd step (Laundry) and rebuild visible steps & indicators
-                    const laundryStep = document.getElementById('laundryStep');
-                    if (laundryStep) laundryStep.style.display = 'none';
-
-                    refreshPfSteps();
-                    createStepBar();
-                    updateStepBar();
-
-                    // Try to find the "Full Name" step (step 6) by heading text
-                    const targetVisibleIndex = findStepByHeading('Full Name');
-                    if (targetVisibleIndex !== -1) {
-                        slideCardToStep(targetVisibleIndex, 'next');
-                        return;
-                    }
-
-                    // Fallback: go to the next visible step after current
-                    const fallbackIdx = pfStep + 1;
-                    if (fallbackIdx < pfSteps.length) slideCardToStep(fallbackIdx, 'next');
-                    else {
-                        const last = pfSteps.length - 1;
-                        if (last >= 0) slideCardToStep(last, 'next');
-                    }
-                }, 100);
+                    pfStep = 3; // Jump to step 4 (index 3)
+                    showPfStep();
+                }, 300);
             } else {
-                // If YES selected, show the acknowledgement step and go to it
+                // If YES selected, go to step 3 normally
                 shouldSkipStep3 = false;
-                if (pickupAck) {
-                    pickupAck.style.display = '';
-                    const laundryStep = document.getElementById('laundryStep');
-                    if (laundryStep) laundryStep.style.display = '';
-                    refreshPfSteps();
-                    createStepBar();
-                    updateStepBar();
-                }
                 setTimeout(() => {
                     navigateStep('next');
-                }, 100);
+                }, 300);
             }
         }
 
@@ -1520,9 +1428,23 @@
             const dryIndex = Array.from(pfSteps).findIndex(s => s && s.id === 'dryCleaningStep');
 
             if (direction === 'next') {
-                // If user chose NO pickup earlier, skip that acknowledgement step
+                // If user chose NO pickup earlier, skip that acknowledgement step AND any hidden steps
                 if (pfStep === 1 && localStorage.getItem('pickupChoice') === 'no') {
-                    pfStep = 3; // Skip from step 2 to step 4
+                    pfStep = 3; // Start from step 4 (index 3)
+                    
+                    // Skip any hidden steps from here onwards
+                    while (pfStep < pfSteps.length && pfSteps[pfStep]) {
+                        const step = pfSteps[pfStep];
+                        const isHidden = step.style.display === 'none';
+                        const isDryCleaningAndNotSelected = step.id === 'dryCleaningStep' && !showDryCleaning;
+                        
+                        if (isHidden || isDryCleaningAndNotSelected) {
+                            pfStep++;
+                        } else {
+                            break;
+                        }
+                    }
+                    
                     showPfStep();
                     return;
                 }
@@ -1530,12 +1452,12 @@
                 let nextStep = pfStep + 1;
 
                 // Skip any hidden steps
-                while (pfSteps[nextStep] && pfSteps[nextStep].style && pfSteps[nextStep].style.display === 'none') {
+                while (nextStep < pfSteps.length && pfSteps[nextStep] && pfSteps[nextStep].style && pfSteps[nextStep].style.display === 'none') {
                     nextStep++;
                 }
 
                 // Skip hidden/irrelevant dry cleaning step(s)
-                while (pfSteps[nextStep] && pfSteps[nextStep].id === 'dryCleaningStep' && !showDryCleaning) {
+                while (nextStep < pfSteps.length && pfSteps[nextStep] && pfSteps[nextStep].id === 'dryCleaningStep' && !showDryCleaning) {
                     nextStep++;
                 }
 
@@ -1546,17 +1468,25 @@
 
                 slideCardToStep(nextStep, 'next');
             } else if (direction === 'prev') {
-                // When going back from step 4, if step 3 was skipped, go back to step 2
-                if (pfStep === 3 && localStorage.getItem('pickupChoice') === 'no') {
-                    slideCardToStep(1, 'prev'); // go back to step 2
+                // When going back from any step after the skipped section, if NO was selected, go back to step 2
+                if (pfStep > 2 && localStorage.getItem('pickupChoice') === 'no') {
+                    slideCardToStep(1, 'prev'); // go back directly to step 2
                     return;
                 }
 
                 let prevStep = pfStep - 1;
 
-                // Skip hidden dry cleaning step(s)
-                while (prevStep >= 0 && pfSteps[prevStep] && pfSteps[prevStep].id === 'dryCleaningStep' && !showDryCleaning) {
-                    prevStep--;
+                // Skip ALL hidden steps going backward (including Laundry, Washing, and Dry Cleaning)
+                while (prevStep >= 0 && pfSteps[prevStep]) {
+                    const step = pfSteps[prevStep];
+                    const isHidden = step.style.display === 'none';
+                    const isDryCleaningAndNotSelected = step.id === 'dryCleaningStep' && !showDryCleaning;
+                    
+                    if (isHidden || isDryCleaningAndNotSelected) {
+                        prevStep--;
+                    } else {
+                        break;
+                    }
                 }
 
                 if (prevStep < 0) return;
@@ -1575,19 +1505,28 @@
                 pfStep = 3;
             }
 
-            // Prevent landing on hidden dry cleaning step
-            const dryIndex = Array.from(pfSteps).findIndex(s => s && s.id === 'dryCleaningStep');
-            if (dryIndex !== -1 && pfStep === dryIndex && !showDryCleaning) {
-                // Prefer moving forward if possible, otherwise move back
-                if (pfStep < pfSteps.length - 1) {
-                    pfStep++;
+            // Skip ALL hidden steps (including dry cleaning if not applicable)
+            while (pfStep < pfSteps.length && pfSteps[pfStep]) {
+                const step = pfSteps[pfStep];
+                const isHidden = step.style.display === 'none';
+                const isDryCleaningAndNotSelected = step.id === 'dryCleaningStep' && !showDryCleaning;
+                
+                if (isHidden || isDryCleaningAndNotSelected) {
+                    pfStep++; // Move to next step and check again
                 } else {
-                    pfStep = Math.max(0, pfStep - 1);
+                    break; // Found a visible step
                 }
             }
 
-            // Show current step
-            pfSteps[pfStep].classList.add("active");
+            // Safety check: don't exceed array bounds
+            if (pfStep >= pfSteps.length) {
+                pfStep = Math.max(0, pfSteps.length - 1);
+            }
+
+            // Show current step if it exists
+            if (pfStep < pfSteps.length && pfSteps[pfStep]) {
+                pfSteps[pfStep].classList.add("active");
+            }
             updateButtons();
             updateStepBar();
         }
