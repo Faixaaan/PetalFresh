@@ -17,6 +17,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet" />
 
     <link rel="stylesheet" href="./Assets/css/style.css" />
+
 </head>
 
 <body>
@@ -124,17 +125,17 @@
 
                 <!-- STEP 1 -->
                 <div class="pf-step active">
-                    <h2>Select a Service</h2>
-                    <select>
+                    <h2>Select a Service <span class="mandatory">*</span></h2>
+                    <select id="mainServiceSelect">
                         <option value="">Select</option>
-                        <option>Laundry</option>
-                        <option>Dry Cleaning</option>
+                        <option value="laundry">Laundry</option>
+                        <option value="dryclean">Dry Cleaning</option>
                     </select>
                 </div>
 
                 <!-- STEP 2 -->
                 <div class="pf-step">
-                    <h2>Do you require Pick Up & Delivery Service? <span>*</span></h2>
+                    <h2>Do you require Pick Up & Delivery Service? <span class="mandatory">*</span></h2>
                     <p>Please note a minimum charge is required.</p>
 
                     <div class="pf-options">
@@ -143,113 +144,629 @@
                     </div>
                 </div>
 
+                <!-- STEP 2.1 (ONLY IF YES) -->
+                <div class="pf-step pf-pickup-ack">
+                    <h2>Pick-Up & Drop-Off Service <span class="mandatory">*</span></h2>
+                    <p>
+                        Please note that this service is subject to a minimum charge of $55,
+                        which will be applied to your total.
+                    </p>
+                    <div class="row align-items-start pf-checkbox">
+                        <div class="col-1">
+                            <input type="checkbox" id="pickupAck">
+                        </div>
+                        <div class="col-10">
+                            <span>
+                                I acknowledge that I have read and understand the minimum charge.
+                            </span>
+                        </div>
+                    </div>
+
+
+                </div>
+
                 <!-- STEP 3 -->
-                <div class="pf-step">
-                    <h2>Select Laundry Service</h2>
-                    <select>
+                <!-- STEP 3 -->
+                <!-- STEP 3 -->
+                <div class="pf-step" id="laundryStep">
+                    <h2>Select Laundry Service <span class="mandatory">*</span></h2>
+                    <select id="laundryService" onchange="toggleDryCleaningStep()">
                         <option value="">Select</option>
-                        <option>Wash, Dry & Fold</option>
-                        <option>Wash & Iron</option>
+                        <option value="washDryFold">Wash, Dry & Fold (Per 5kg will coast $ 27.50)</option>
+                        <option value="washIron">Wash & Iron</option>
                     </select>
                 </div>
 
                 <!-- STEP 4 -->
-                <div class="pf-step">
-                    <h2>Washing Instructions</h2>
-                    <select>
-                        <option value="">Select</option>
-                        <option>Combined Washing</option>
-                        <option>Separate Washing</option>
-                    </select>
+                <!-- STEP 4 -->
+                <div class="pf-step" id="washingStep">
+                    <h2>Washing Instructions for Whites and Colors <span>*</span></h2>
+
+                    <p class="pf-note">
+                        For efficiency and cost-effectiveness, if you provide a load of laundry without specifying
+                        that whites and colors be separated, all items will be washed together.
+                        Separate washing requires an extra load and an additional charge.
+                    </p>
+
+                    <div class="row g-3 pf-radio-cards">
+                        <!-- Combined Washing -->
+                        <div class="col-md-6">
+                            <label class="pf-radio-card">
+                                <input type="radio" name="washingType" value="combined" />
+                                <span class="pf-radio-circle"></span>
+                                <span class="pf-radio-text">Combined Washing</span>
+                            </label>
+                        </div>
+
+                        <!-- Separate Washing -->
+                        <div class="col-md-6">
+                            <label class="pf-radio-card">
+                                <input type="radio" name="washingType" value="separate" />
+                                <span class="pf-radio-circle"></span>
+                                <span class="pf-radio-text">Separate Washing</span>
+                            </label>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- dry cleaning  -->
+
+                <!-- DRY CLEANING STEP -->
+                <div class="pf-step" id="dryCleaningStep">
+                    <h2 class="text-center mb-2">Dry Cleaning Services</h2>
+                    <p class="text-center text-muted mb-4">
+                        Please indicate the Dry Cleaning Services you require
+                        <br />
+                        <small>(Prices are indicative only and subject to change)</small>
+                    </p>
+
+                    <div class="row g-3 pf-dry-grid">
+                        <!-- Card -->
+                        <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Jacket Long ($25.00)
+                            </label>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Jacket ($22.00)
+                            </label>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Jacket Child ($15.00)
+                            </label>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Coat STD ($30.00)
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Over Coat ($35.00)
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Trouser ($16.00)
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Trousers Childs ($13.00)
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Zip Trousers ($35.00)
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Shorts ($15.00)
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Silk Shirt ($20.00)
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Shirt ($12.80)
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Shirt Childs ($11.80)
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Tshirt ($11.00)
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Blouse ($18.00)
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Mens Suits(2pcs) ($38.00)
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Vest ($16.00)
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Ties ($10.00)
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Dress Long ($35.00)
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Dress Short ($30.00)
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Dress Evening ($38.00 - $55.00)
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Dress Childs ($25.00)
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Dress Gown(L) ($35.00)
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Dress Gown(S) ($25.00)
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Skirt Long ($18.50)
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Skirt ($16.00)
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Skirt Layers ($25.00)
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Jumpers ($16.00)
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Overall($35.00)
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Travell Rug ($25.00)
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Blanket(S) ($35.00)
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Blanket(D) ($38.00)
+                            </label>
+                        </div>
+                         <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Blanket(Q) ($42.00)
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Blanket(K) ($45.00)
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Blanket(SK) ($50.00)
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Asian DoubleSided ($45.00)
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Thick Double ($45.00)
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Doona(S) ($38.00)
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Doona(D) ($42.00)
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Doona(Q) ($48.00)
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Doona(K) ($55.00)
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Doona(SK) ($60.00)
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Bedspread(S) ($38.00)
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Bedspread(D) ($40.00)
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Bedspread(Q) ($45.00)
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Bedspread(K) ($48.00)
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                SheepSkin Underlay(S) ($45.00)
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                SheepSkin Underlay(D) ($50.00)
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                SheepSkin Underlay(Q) ($55.00)
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                SheepSkin Underlay(K) ($60.00)
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Seat Covers ($45.00)
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Christeaning Dress ($38.00)
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Weddig Dresses (from $350.00)
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Weddig Boxes ($60.00)
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Repairs STD ($25.00)
+                            </label>
+                        </div>
+                         <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Skirt Zip Invisible($45.00)
+                            </label>
+                        </div>
+                         <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Hem Trousers($25.00)
+                            </label>
+                        </div>
+                         <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Hem Sleeve($65.00)
+                            </label>
+                        </div>
+                         <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Hem Sleeve($65.00)
+                            </label>
+                        </div>
+                         <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Hem Sleeve($65.00)
+                            </label>
+                        </div>
+                         <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Button Up($5.00)
+                            </label>
+                        </div>
+                         <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Ladies Jacket($25.00)
+                            </label>
+                        </div>
+                         <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Puffer Jacket($30.00)
+                            </label>
+                        </div>
+                         <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Table Clothes(S)($15.95)
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Table Clothes(M)($22.95)
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="pf-dry-card">
+                                <input type="checkbox" />
+                                <span class="pf-checkbox-ui"></span>
+                                Table Clothes(L)($27.95)
+                            </label>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+
 
                 <!-- STEP 5 -->
                 <div class="pf-step">
-                    <h2>Special Instructions</h2>
-                    <textarea rows="4" placeholder="Enter instructions"></textarea>
+                    <h2>Special Instructions <span class="mandatory">*</span></h2>
+                    <textarea rows="4"></textarea>
                 </div>
-                <div class="pf-step">
-                    <h2>Full Name <span>*</span></h2>
-                    <div class="row">
-                        <div class=" col-6">
 
-                            <input type="text" placeholder="First Name" />
+                <!-- STEP 6 -->
+                <div class="pf-step">
+                    <h2>Full Name <span class="mandatory">*</span></h2>
+                    <div class="row">
+                        <div class="col-6">
+                            <input type="text" placeholder="First Name">
                         </div>
                         <div class="col-6">
-
-                            <input type="text" placeholder="Last Name" />
+                            <input type="text" placeholder="Last Name">
                         </div>
                     </div>
-
-
-
                 </div>
+
+                <!-- STEP 7 -->
                 <div class="pf-step">
-                    <label>Phone Number</label>
-                    <input type="tel" placeholder="Enter phone number" />
+                    <label>Phone Number <span class="mandatory">*</span></label>
+                    <input type="tel">
                 </div>
-                <!-- ADDRESS STEP -->
+
+                <!-- STEP 8 -->
                 <div class="pf-step">
-                    <h2>Address <span>*</span></h2>
+                    <h2>Address <span class="mandatory">*</span></h2>
 
                     <div class="row">
+                        <!-- Search Address -->
                         <div class="col-12">
-                            <input type="text" placeholder="Search address" />
-                        </div>
-                        <div class="col-12">
-                            <input type="text" placeholder="Street Address" />
+                            <input type="text" id="searchAddress" placeholder="Search address" />
                         </div>
 
+                        <!-- Hidden address fields -->
+                        <div id="addressFields" class="row mt-3" style="display:none;">
+                            <div class="col-12">
+                                <input type="text" placeholder="Street Address" />
+                            </div>
 
+                            <div class="col-6">
+                                <input type="text" placeholder="Suburb" />
+                            </div>
 
+                            <div class="col-6">
+                                <input type="text" placeholder="State" />
+                            </div>
 
-                        <div class="col-6">
-                            <input type="text" placeholder="Suburb" />
+                            <div class="col-6">
+                                <input type="text" placeholder="Post Code" />
+                            </div>
 
-                        </div>
-                        <div class="col-6">
-
-                            <input type="text" placeholder="State" />
-                        </div>
-
-                        <div class="col-6">
-                            <input type="text" placeholder="Post Code" />
-
-                        </div>
-                        <div class="col-6">
-                            <select>
-                                <option value="">Select</option>
-                                <option>Australia</option>
-                            </select>
+                            <div class="col-6">
+                                <select>
+                                    <option value="">Select</option>
+                                    <option>Australia</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
-
-
                 </div>
 
 
-                <!-- 13. Email -->
+
+                <!-- STEP 9 -->
                 <div class="pf-step">
-                    <label>Email</label>
-                    <input type="email" placeholder="Enter email address" />
-                </div>
-                <div class="pf-step">
-                    <label>Special Delivery Instruction</label>
-                    <textarea rows="3" placeholder="Enter delivery instructions"></textarea>
+                    <label>Email <span class="mandatory">*</span></label>
+                    <input type="email">
                 </div>
 
 
 
-
-
-
-                <!-- Buttons -->
+                <!-- ACTIONS -->
                 <div class="pf-actions">
                     <button type="button" id="pfPrev">Back</button>
                     <button type="button" id="pfNext">Next</button>
                 </div>
 
             </form>
+
 
             <!-- Progress -->
         </div>
@@ -350,19 +867,22 @@
     </script>
 
     <script>
+        let showDryCleaning = false;
         let pfStep = 0;
-        const pfSteps = document.querySelectorAll(".pf-step");
+        let pfSteps = Array.from(document.querySelectorAll("#pfForm .pf-step"));
+        const allSteps = document.querySelectorAll(".pf-step");
         const stepLabels = [
             "Select Service",
             "Pickup Service",
             "Laundry Service",
             "Washing Instructions",
+            "Dry Cleaning Services",
             "Special Instructions",
             "Personal Details",
             "Phone Number",
             "Address",
             "E-mail",
-            "Special Delivery Instruction"
+
 
         ];
         let isAnimating = false;
@@ -393,12 +913,31 @@
 
                 stepItem.addEventListener('click', function () {
                     if (isAnimating) return;
+
                     const clickedStep = parseInt(this.getAttribute('data-step'));
+                    const targetStepEl = pfSteps[clickedStep];
+
+                    // Prevent clicking a hidden step
+                    if (targetStepEl) {
+                        const cs = window.getComputedStyle(targetStepEl);
+                        if (cs && cs.display === 'none') return;
+                    }
+
+                    // 🚫 Block Dry Cleaning unless Wash & Iron selected
+                    if (
+                        targetStepEl &&
+                        targetStepEl.id === 'dryCleaningStep' &&
+                        !showDryCleaning
+                    ) {
+                        return;
+                    }
+
                     if (clickedStep !== pfStep) {
                         const direction = clickedStep > pfStep ? 'next' : 'prev';
                         slideCardToStep(clickedStep, direction);
                     }
                 });
+
 
                 container.appendChild(stepItem);
             }
@@ -453,6 +992,7 @@
 
             stepItems.forEach((item, index) => {
                 item.classList.remove('active', 'completed', 'skipped');
+
 
                 if (index === pfStep) {
                     item.classList.add('active');
@@ -518,17 +1058,23 @@
         function navigateStep(direction) {
             if (isAnimating) return;
 
-            // Mark current step as completed if it has values
-            markCurrentStepAsCompleted();
+            let nextStep = pfStep + (direction === 'next' ? 1 : -1);
 
-            if (direction === 'next' && pfStep < pfSteps.length - 1) {
-                slideCardToStep(pfStep + 1, 'next');
-            } else if (direction === 'prev' && pfStep > 0) {
-                slideCardToStep(pfStep - 1, 'prev');
-            } else if (direction === 'next' && pfStep === pfSteps.length - 1) {
-                redirectToThankYou();
+            // Skip any steps that are hidden (display: none)
+            while (pfSteps[nextStep] && pfSteps[nextStep].style && pfSteps[nextStep].style.display === 'none') {
+                nextStep += direction === 'next' ? 1 : -1;
             }
+
+            // Also skip Dry Cleaning step if not applicable
+            while (pfSteps[nextStep] && pfSteps[nextStep].id === 'dryCleaningStep' && !showDryCleaning) {
+                nextStep += direction === 'next' ? 1 : -1;
+            }
+
+            if (nextStep < 0 || nextStep >= pfSteps.length) return;
+
+            slideCardToStep(nextStep, direction);
         }
+
 
         // Mark current step as completed based on field values
         function markCurrentStepAsCompleted() {
@@ -838,21 +1384,343 @@
             field.parentElement.appendChild(error);
         }
     </script>
-    <script>
-        document.getElementById("pfNext").onclick = () => {
-            // 🔴 Validate before moving forward
-            if (!validateCurrentStep()) return;
 
-            // ✅ If last step → redirect
-            if (pfStep === pfSteps.length - 1) {
-                redirectToThankYou();
-                return;
+    <script>
+        // REPLACE your existing pfSelect function with this:
+        function pfSelect(btn) {
+            // 1. Toggle active button
+            btn.parentElement.querySelectorAll("button")
+                .forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+
+            const isYes = btn.innerText.trim().toUpperCase() === "YES";
+
+            // 2. Store the selection
+            localStorage.setItem('pickupChoice', isYes ? 'yes' : 'no');
+
+            // 3. If NO is selected, skip step 3 entirely
+            if (!isYes) {
+                // Mark that step 3 should be skipped
+                shouldSkipStep3 = true;
+
+                // Wait a moment then jump to step 4
+                setTimeout(() => {
+                    pfStep = 3; // Jump to step 4 (index 3)
+                    showPfStep();
+                }, 300);
+            } else {
+                // If YES selected, go to step 3 normally
+                shouldSkipStep3 = false;
+                setTimeout(() => {
+                    navigateStep('next');
+                }, 300);
+            }
+        }
+
+        // ADD this at the top with your other variables:
+        let shouldSkipStep3 = false;
+        let pickupChoice = '';
+
+        // MODIFY your navigateStep function like this:
+        function navigateStep(direction) {
+            if (isAnimating) return;
+
+            const dryIndex = Array.from(pfSteps).findIndex(s => s && s.id === 'dryCleaningStep');
+
+            if (direction === 'next') {
+                // If user chose NO pickup earlier, skip that acknowledgement step
+                if (pfStep === 1 && localStorage.getItem('pickupChoice') === 'no') {
+                    pfStep = 3; // Skip from step 2 to step 4
+                    showPfStep();
+                    return;
+                }
+
+                let nextStep = pfStep + 1;
+
+                // Skip any hidden steps
+                while (pfSteps[nextStep] && pfSteps[nextStep].style && pfSteps[nextStep].style.display === 'none') {
+                    nextStep++;
+                }
+
+                // Skip hidden/irrelevant dry cleaning step(s)
+                while (pfSteps[nextStep] && pfSteps[nextStep].id === 'dryCleaningStep' && !showDryCleaning) {
+                    nextStep++;
+                }
+
+                if (nextStep >= pfSteps.length) {
+                    redirectToThankYou();
+                    return;
+                }
+
+                slideCardToStep(nextStep, 'next');
+            } else if (direction === 'prev') {
+                // When going back from step 4, if step 3 was skipped, go back to step 2
+                if (pfStep === 3 && localStorage.getItem('pickupChoice') === 'no') {
+                    slideCardToStep(1, 'prev'); // go back to step 2
+                    return;
+                }
+
+                let prevStep = pfStep - 1;
+
+                // Skip hidden dry cleaning step(s)
+                while (prevStep >= 0 && pfSteps[prevStep] && pfSteps[prevStep].id === 'dryCleaningStep' && !showDryCleaning) {
+                    prevStep--;
+                }
+
+                if (prevStep < 0) return;
+
+                slideCardToStep(prevStep, 'prev');
+            }
+        }
+
+        // MODIFY your showPfStep function:
+        function showPfStep() {
+            // Hide all steps
+            pfSteps.forEach(s => s.classList.remove("active"));
+
+            // If step 3 should be skipped and we're on it, jump to step 4
+            if (pfStep === 2 && localStorage.getItem('pickupChoice') === 'no') {
+                pfStep = 3;
             }
 
-            // Use the same slide animation as stepper clicks
-            navigateStep('next');
-        };
+            // Prevent landing on hidden dry cleaning step
+            const dryIndex = Array.from(pfSteps).findIndex(s => s && s.id === 'dryCleaningStep');
+            if (dryIndex !== -1 && pfStep === dryIndex && !showDryCleaning) {
+                // Prefer moving forward if possible, otherwise move back
+                if (pfStep < pfSteps.length - 1) {
+                    pfStep++;
+                } else {
+                    pfStep = Math.max(0, pfStep - 1);
+                }
+            }
+
+            // Show current step
+            pfSteps[pfStep].classList.add("active");
+            updateButtons();
+            updateStepBar();
+        }
+
+        // MODIFY your updateStepBar function:
+        function updateStepBar() {
+            const progressLine = document.getElementById('pfStepProgress');
+            const stepItems = document.querySelectorAll('.pf-step-item');
+            const dryIndex = Array.from(pfSteps).findIndex(s => s && s.id === 'dryCleaningStep');
+
+            // Determine how many visible steps there are (considering pickup skip and dry cleaning)
+            let visibleStepsCount = stepItems.length;
+            if (localStorage.getItem('pickupChoice') === 'no') visibleStepsCount--;
+            if (!showDryCleaning && dryIndex !== -1) visibleStepsCount--;
+
+            if (progressLine) {
+                // Compute effective step index for progress calculation
+                let effectiveStep = pfStep;
+
+                if (pfStep > 2 && localStorage.getItem('pickupChoice') === 'no') {
+                    effectiveStep--; // Compensate for skipped pickup step
+                }
+                if (!showDryCleaning && dryIndex !== -1 && pfStep > dryIndex) {
+                    effectiveStep--; // Compensate for hidden dry cleaning step
+                }
+
+                const denom = Math.max(1, visibleStepsCount - 1);
+                const progressPercent = (effectiveStep / denom) * 100;
+                progressLine.style.width = progressPercent + '%';
+            }
+
+            stepItems.forEach((item, index) => {
+                item.classList.remove('active', 'completed', 'skipped');
+
+                // Hide the dry cleaning step indicator when not applicable
+                if (!showDryCleaning && index === dryIndex) {
+                    item.style.display = 'none';
+                    item.classList.add('skipped');
+                    return; // skip further checks for this item
+                } else {
+                    item.style.display = ''; // reset
+                }
+
+                // Mark step 3 as skipped if NO was chosen
+                if (index === 2 && localStorage.getItem('pickupChoice') === 'no') {
+                    item.classList.add('skipped');
+                }
+                else if (index === pfStep) {
+                    item.classList.add('active');
+                }
+                else if (index < pfStep) {
+                    // Adjust for skipped pickup step
+                    if (index === 2 && localStorage.getItem('pickupChoice') === 'no') {
+                        // Skip this comparison
+                    } else if (isStepCompleted(index)) {
+                        item.classList.add('completed');
+                    }
+                }
+            });
+
+            // Update label
+            const activeLabel = document.getElementById('activeStepLabel');
+            if (activeLabel) {
+                let stepLabelIndex = pfStep;
+                if (pfStep > 2 && localStorage.getItem('pickupChoice') === 'no') {
+                    stepLabelIndex--;
+                }
+                if (!showDryCleaning && dryIndex !== -1 && pfStep > dryIndex) {
+                    stepLabelIndex--;
+                }
+                if (stepLabels[stepLabelIndex]) {
+                    activeLabel.textContent = stepLabels[stepLabelIndex];
+                }
+            }
+        }
     </script>
+
+
+    <script>
+        function toggleDryCleaningStep() {
+            const laundrySelect = document.getElementById('laundryService');
+            if (!laundrySelect) return;
+
+            showDryCleaning = laundrySelect.value === 'washIron';
+
+            const dryStepEl = document.getElementById('dryCleaningStep');
+            const dryIndex = Array.from(pfSteps).findIndex(s => s && s.id === 'dryCleaningStep');
+            const stepItems = document.querySelectorAll('.pf-step-item');
+
+            // Show/hide the dry cleaning step content
+            // Keep default styling for the step; only let the `.active` class control visibility.
+            if (dryStepEl) {
+                dryStepEl.style.display = showDryCleaning ? '' : 'none';
+            }
+
+            // Show/hide the step indicator for dry cleaning
+            if (stepItems && dryIndex !== -1 && stepItems[dryIndex]) {
+                stepItems[dryIndex].style.display = showDryCleaning ? 'flex' : 'none';
+            }
+
+            // If currently on Dry Cleaning and user switches away, move forward
+            if (!showDryCleaning) {
+                if (pfSteps[pfStep] && pfSteps[pfStep].id === 'dryCleaningStep') {
+                    navigateStep('next');
+                } else if (pfStep > dryIndex) {
+                    // Adjust current step index to account for removed step
+                    pfStep = Math.max(0, pfStep - 1);
+                    showPfStep();
+                }
+            }
+
+            updateStepBar();
+        }
+
+
+
+
+
+
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            const laundrySelect = document.getElementById('laundryService');
+            const mainSelect = document.getElementById('mainServiceSelect');
+
+            function applyMainService() {
+                const val = mainSelect ? mainSelect.value : '';
+                const laundryStep = document.getElementById('laundryStep');
+                const washingStep = document.getElementById('washingStep');
+                const dryStepEl = document.getElementById('dryCleaningStep');
+
+                const pfItems = document.querySelectorAll('.pf-step-item');
+
+                if (val === 'dryclean') {
+                    // hide laundry/washing steps and their indicators
+                    if (laundryStep) laundryStep.style.display = 'none';
+                    if (washingStep) washingStep.style.display = 'none';
+
+                    pfItems.forEach((it, i) => {
+                        const idx = parseInt(it.getAttribute('data-step'));
+                        if (pfSteps[idx] === laundryStep || pfSteps[idx] === washingStep) it.style.display = 'none';
+                    });
+
+                    // ensure dry step visible
+                    if (dryStepEl) dryStepEl.style.display = '';
+                    showDryCleaning = true;
+                } else {
+                    // show laundry/washing steps back
+                    if (laundryStep) laundryStep.style.display = '';
+                    if (washingStep) washingStep.style.display = '';
+
+                    pfItems.forEach((it, i) => it.style.display = '');
+
+                    // dry step only visible if laundry choice is washIron
+                    if (dryStepEl) {
+                        showDryCleaning = laundrySelect && laundrySelect.value === 'washIron';
+                        dryStepEl.style.display = showDryCleaning ? '' : 'none';
+                    }
+                }
+
+                updateStepBar();
+
+                // If current step is now hidden, jump to next visible
+                if (pfSteps[pfStep] && pfSteps[pfStep].style && pfSteps[pfStep].style.display === 'none') {
+                    let next = pfStep;
+                    while (next < pfSteps.length && pfSteps[next] && pfSteps[next].style && pfSteps[next].style.display === 'none') next++;
+                    if (next < pfSteps.length) slideCardToStep(next, 'next');
+                    else {
+                        let prev = pfStep;
+                        while (prev >= 0 && pfSteps[prev] && pfSteps[prev].style && pfSteps[prev].style.display === 'none') prev--;
+                        if (prev >= 0) slideCardToStep(prev, 'prev');
+                    }
+                }
+            }
+
+            if (mainSelect) mainSelect.addEventListener('change', applyMainService);
+            if (laundrySelect) laundrySelect.addEventListener('change', () => { toggleDryCleaningStep(); if (mainSelect) applyMainService(); });
+
+            // apply initial state
+            if (mainSelect) applyMainService();
+            if (laundrySelect) toggleDryCleaningStep();
+        });
+
+    </script>
+
+    <script>
+        // Add this back - address search functionality
+        document.addEventListener("DOMContentLoaded", () => {
+            const searchInput = document.getElementById("searchAddress");
+            const addressFields = document.getElementById("addressFields");
+
+            if (!searchInput || !addressFields) return;
+
+            // hide initially
+            addressFields.style.display = "none";
+
+            searchInput.addEventListener("keydown", (e) => {
+                if (e.key === "Enter") {
+                    e.preventDefault(); // stop form submit / step jump
+
+                    if (searchInput.value.trim().length > 0) {
+                        addressFields.style.display = "flex";
+                    }
+                }
+            });
+
+            // Also show on blur (when user clicks away)
+            searchInput.addEventListener("blur", () => {
+                if (searchInput.value.trim().length > 0) {
+                    addressFields.style.display = "flex";
+                }
+            });
+        });
+    </script>
+
+
+
+
+
+
+
+
+
+
+
 
 
 
