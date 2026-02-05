@@ -903,7 +903,13 @@
                 const stepItem = document.createElement('div');
                 stepItem.className = 'pf-step-item';
                 stepItem.setAttribute('data-step', i);
-                stepItem.setAttribute('data-title', stepLabels[i]);
+                // derive a title from the step element (fall back to stepLabels)
+                let derivedTitle = stepLabels[i];
+                if (pfSteps[i]) {
+                    const h = pfSteps[i].querySelector('h2, label');
+                    if (h && h.textContent.trim()) derivedTitle = h.textContent.trim();
+                }
+                stepItem.setAttribute('data-title', derivedTitle);
 
                 const circle = document.createElement('div');
                 circle.className = 'pf-step-circle';
@@ -1017,6 +1023,29 @@
             }
         }
 
+        // Rebuild the visible pfSteps array based on current element visibility
+        function refreshPfSteps() {
+            const all = Array.from(document.querySelectorAll('#pfForm .pf-step'));
+            pfSteps = all.filter(el => {
+                try {
+                    const cs = window.getComputedStyle(el);
+                    return cs && cs.display !== 'none';
+                } catch (e) {
+                    return true;
+                }
+            });
+        }
+
+        // Find visible step index by heading text (case-insensitive)
+        function findStepByHeading(text) {
+            const needle = text.toLowerCase();
+            for (let i = 0; i < pfSteps.length; i++) {
+                const heading = pfSteps[i].querySelector('h2, label');
+                if (heading && heading.textContent.toLowerCase().includes(needle)) return i;
+            }
+            return -1;
+        }
+
         // SMOOTH SLIDE ANIMATION FOR CARD
         function slideCardToStep(targetStep, direction) {
             if (isAnimating) return;
@@ -1054,25 +1083,54 @@
             }, 300);
         }
 
-        // For Next/Prev buttons
+        // For Next/Prev buttons - robust version: find next/prev visible .pf-step in DOM order
         function navigateStep(direction) {
             if (isAnimating) return;
 
-            let nextStep = pfStep + (direction === 'next' ? 1 : -1);
+            // Ensure our visible steps list is up to date
+            refreshPfSteps();
 
-            // Skip any steps that are hidden (display: none)
-            while (pfSteps[nextStep] && pfSteps[nextStep].style && pfSteps[nextStep].style.display === 'none') {
-                nextStep += direction === 'next' ? 1 : -1;
+            // Current active element
+            let currentEl = pfSteps[pfStep];
+            if (!currentEl) currentEl = document.querySelector('#pfForm .pf-step.active');
+
+            const all = Array.from(document.querySelectorAll('#pfForm .pf-step'));
+            let idx = all.indexOf(currentEl);
+            if (idx === -1) {
+                // fallback to first visible
+                for (let i = 0; i < all.length; i++) {
+                    const cs = window.getComputedStyle(all[i]);
+                    if (cs && cs.display !== 'none') { idx = i; break; }
+                }
+                if (idx === -1) return;
             }
 
-            // Also skip Dry Cleaning step if not applicable
-            while (pfSteps[nextStep] && pfSteps[nextStep].id === 'dryCleaningStep' && !showDryCleaning) {
-                nextStep += direction === 'next' ? 1 : -1;
+            let candidate = idx;
+            if (direction === 'next') {
+                candidate++;
+                while (candidate < all.length) {
+                    const cs = window.getComputedStyle(all[candidate]);
+                    if (cs && cs.display !== 'none') break;
+                    candidate++;
+                }
+                if (candidate >= all.length) return; // no next
+            } else {
+                candidate--;
+                while (candidate >= 0) {
+                    const cs = window.getComputedStyle(all[candidate]);
+                    if (cs && cs.display !== 'none') break;
+                    candidate--;
+                }
+                if (candidate < 0) return; // no prev
             }
 
-            if (nextStep < 0 || nextStep >= pfSteps.length) return;
+            // candidate is a DOM step element index in all. Convert to pfSteps index
+            const targetEl = all[candidate];
+            refreshPfSteps();
+            const targetIndex = pfSteps.indexOf(targetEl);
+            if (targetIndex === -1) return;
 
-            slideCardToStep(nextStep, direction);
+            slideCardToStep(targetIndex, direction);
         }
 
 
@@ -1398,22 +1456,56 @@
             // 2. Store the selection
             localStorage.setItem('pickupChoice', isYes ? 'yes' : 'no');
 
-            // 3. If NO is selected, skip step 3 entirely
+            const pickupAck = document.querySelector('.pf-pickup-ack');
+
+            // 3. If NO is selected, hide pick-up acknowledgement step and go to the next visible step
             if (!isYes) {
-                // Mark that step 3 should be skipped
                 shouldSkipStep3 = true;
 
-                // Wait a moment then jump to step 4
+                if (pickupAck) {
+                    pickupAck.style.display = 'none';
+                    refreshPfSteps();
+                    updateStepBar();
+                }
+
                 setTimeout(() => {
-                    pfStep = 3; // Jump to step 4 (index 3)
-                    showPfStep();
-                }, 300);
+                    // Hide the 3rd step (Laundry) and rebuild visible steps & indicators
+                    const laundryStep = document.getElementById('laundryStep');
+                    if (laundryStep) laundryStep.style.display = 'none';
+
+                    refreshPfSteps();
+                    createStepBar();
+                    updateStepBar();
+
+                    // Try to find the "Full Name" step (step 6) by heading text
+                    const targetVisibleIndex = findStepByHeading('Full Name');
+                    if (targetVisibleIndex !== -1) {
+                        slideCardToStep(targetVisibleIndex, 'next');
+                        return;
+                    }
+
+                    // Fallback: go to the next visible step after current
+                    const fallbackIdx = pfStep + 1;
+                    if (fallbackIdx < pfSteps.length) slideCardToStep(fallbackIdx, 'next');
+                    else {
+                        const last = pfSteps.length - 1;
+                        if (last >= 0) slideCardToStep(last, 'next');
+                    }
+                }, 100);
             } else {
-                // If YES selected, go to step 3 normally
+                // If YES selected, show the acknowledgement step and go to it
                 shouldSkipStep3 = false;
+                if (pickupAck) {
+                    pickupAck.style.display = '';
+                    const laundryStep = document.getElementById('laundryStep');
+                    if (laundryStep) laundryStep.style.display = '';
+                    refreshPfSteps();
+                    createStepBar();
+                    updateStepBar();
+                }
                 setTimeout(() => {
                     navigateStep('next');
-                }, 300);
+                }, 100);
             }
         }
 
